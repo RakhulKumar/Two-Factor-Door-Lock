@@ -92,6 +92,8 @@ class MainWindow(QObject):
                 curr_date = str(datetime.datetime.now())
                 filename = "Door8 " + curr_date + ".jpg"
                 security_camera(filename)
+            else:
+                self.SRL = ""
 
 
 
