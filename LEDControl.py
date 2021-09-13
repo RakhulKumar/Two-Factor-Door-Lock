@@ -5,19 +5,19 @@ import time
 
 window= Tk()
 window.geometry("1000x600")
-window.title("ROBO TEST")
+window.title("LED TEST")
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(8,GPIO.OUT)
+GPIO.setup(21,GPIO.OUT)
 
 
 def on():
-    GPIO.output(8, True)
+    GPIO.output(21, True)
 
 def off():
-    GPIO.output(8, False)
-    
+    GPIO.output(21, False)
+
 
 
 B1 = Button(window, text="ON", width=20, bg="yellow", fg="black", command=on)
