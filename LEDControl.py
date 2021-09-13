@@ -6,6 +6,10 @@ import time
 window= Tk()
 window.geometry("1000x600")
 window.title("LED TEST")
+window.configure(bg="white")
+text = Text(window)
+text.insert(INSERT,"LED Control Using RaspberryPi")
+
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -21,9 +25,9 @@ def off():
 
 
 B1 = Button(window, text="ON", width=20, bg="yellow", fg="black", command=on)
-B1.place(x=150,y=50)
+B1.place(x=250,y=100)
 
 B2 = Button(window, text="OFF", width=20, bg="yellow", fg="black", command=off)
-B2.place(x=350,y=50)
+B2.place(x=450,y=100)
 
 window.mainloop()
