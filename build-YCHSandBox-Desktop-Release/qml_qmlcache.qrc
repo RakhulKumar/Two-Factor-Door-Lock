@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<RCC>
+    <qresource prefix="/">
+        <file alias="Images/YCHLogo.png">../YCHSandBox/Images/YCHLogo.png</file>
+    </qresource>
+</RCC>
