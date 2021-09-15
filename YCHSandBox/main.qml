@@ -35,16 +35,16 @@ Window {
         }
         Text {
             id: textSelActivity
-            x: 28
-            y: 36
+            x: 64
+            y: 46
             text: qsTr("Select Activity")
             font.bold: true
             font.pixelSize: 26
         }
         Rectangle {
             id: rectangle
-            x: 8
-            y: 72
+            x: 36
+            y: 88
             width: 238
             height: 208
             color: "#e1dea0"
