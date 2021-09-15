@@ -5,8 +5,8 @@ import QtQuick.Layouts 1.12
 
 Window {
     visible: true
-    width: 640
-    height: 480
+    width: 1024
+    height: 600
     title: qsTr("YCH Sandbox")
     color: "#ffffff"
 
@@ -26,27 +26,27 @@ Window {
 
         Image {
             id: ychLogo
-            x: 247
-            y: -19
-            width: 100
-            height: 100
+            x: 423
+            y: -26
+            width: 160
+            height: 133
             fillMode: Image.PreserveAspectFit
             source: "Images/YCHLogo.png"
         }
         Text {
             id: textSelActivity
-            x: 30
-            y: 43
+            x: 28
+            y: 36
             text: qsTr("Select Activity")
             font.bold: true
-            font.pixelSize: 20
+            font.pixelSize: 26
         }
         Rectangle {
             id: rectangle
             x: 8
             y: 72
-            width: 185
-            height: 177
+            width: 238
+            height: 208
             color: "#e1dea0"
             radius: 15
             border.width: 1
@@ -54,11 +54,11 @@ Window {
             RadioButton {
                 id: radButPickMat
                 x: 8
-                y: 33
-                width: 169
+                y: 37
+                width: 214
                 height: 44
                 text: qsTr("Pick Material")
-                font.pixelSize: 16
+                font.pixelSize: 22
                 font.bold: true
                 onToggled: {
                     groupBoxPickMat.visible = true
@@ -69,11 +69,11 @@ Window {
             RadioButton {
                 id: radioButtonRefiMat
                 x: 8
-                y: 90
-                width: 169
+                y: 110
+                width: 214
                 height: 44
                 text: qsTr("Refill Material")
-                font.pixelSize: 16
+                font.pixelSize: 22
                 font.bold: true
                 onToggled: {
                     groupBoxPickMat.visible = false
@@ -84,8 +84,8 @@ Window {
 
         GroupBox {
             id: groupBoxPickMat
-            x: 255
-            y: 72
+            x: 400
+            y: 88
             width: 371
             height: 161
             visible: false
@@ -132,8 +132,8 @@ Window {
 
         GroupBox {
             id: groupBoxRefMat
-            x: 255
-            y: 72
+            x: 400
+            y: 88
             width: 371
             height: 161
             visible: false
@@ -183,6 +183,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/
