@@ -28,7 +28,7 @@ class MainWindow(QObject):
             print("Arduino LED turned off.")
 
         id_val = ["101","102","103"]
-        if name in id_val:
+        if id_val=="101":
             self.setName.emit("Welcome, " + "User 1")
             on()
 
