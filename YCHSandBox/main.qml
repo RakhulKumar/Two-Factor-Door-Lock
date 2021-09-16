@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtQml 2.12
 
 Window {
     visible: true
@@ -156,7 +157,7 @@ Window {
             }
 
             Rectangle {
-                id: rectangle2
+                id: rectImageRefMat
                 x: 227
                 y: 34
                 width: 120
@@ -164,17 +165,49 @@ Window {
                 color: "#eaeae6"
                 radius: 15
                 Image {
-                    id: imagePickup1
+                    id: imageRefMat
                     x: -20
                     y: -6
                     width: 161
                     height: 80
                     source: "Images/Pickup.png"
                     fillMode: Image.PreserveAspectFit
+
+                    MouseArea {
+                        id: mouseAreaRefMat
+                        x: 26
+                        y: 8
+                        width: 113
+                        height: 64
+                        onClicked: {
+                            backend.welcomeText(textFieldSRL.text)
+                        }
+                    }
                 }
             }
 
         }
+
+        Label {
+            id: labelWelcomeUser
+            x: 798
+            y: 89
+            width: 211
+            height: 111
+            visible: true
+
+
+        }
+    }
+    Connections{
+        target: backend
+        function onSetName(name){
+            labelWelcomeUser.text = name
+            labelWelcomeUser.text.bold = true
+            labelWelcomeUser.font.pointSize = 22
+            labelWelcomeUser.visible = true
+        }
+
     }
 
 }
@@ -183,6 +216,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;formeditorZoom:0.9}
 }
 ##^##*/
