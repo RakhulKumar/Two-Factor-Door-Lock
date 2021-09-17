@@ -639,6 +639,16 @@ Window {
                     fillMode: Image.PreserveAspectFit
                 }
             }
+        MouseArea{
+            id: mouseAreaConfirm
+            x: 238
+            y: 249
+            width: 96
+            height: 67
+            onClicked:{
+                backend.welcomeText(textFieldSRL.text)
+            }
+        }    
 
         }
 
