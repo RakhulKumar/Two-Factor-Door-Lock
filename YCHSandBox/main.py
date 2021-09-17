@@ -1,8 +1,10 @@
+import sys
+import os
+
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal
-import sys
-import os
+
 import serial
 
 USB_PORT = "/dev/ttyACM0"
@@ -15,22 +17,21 @@ class MainWindow(QObject):
 
     setName = Signal(str)
 
-    
-
     @Slot(str)
     def welcomeText(self, name):
+        
         def on():
             usb.write(b'led_on')
-            print("Arduino LED turned on.")
-
+            
         def off():
             usb.write(b'led_off')
-            print("Arduino LED turned off.")
-
+             
         id_val = ["101","102","103"]
-        if id_val=="101":
-            self.setName.emit("Welcome, " + "User 1")
+        if (name in id_val):
+            self.setName.emit("Welcome User 1")
             on()
+        else:
+            off()
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)

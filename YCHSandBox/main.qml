@@ -145,6 +145,7 @@ Window {
                 text: qsTr("Enter/Scan SRL")
                 font.pixelSize: 25
                 font.bold: true
+
             }
 
             TextField {
@@ -154,6 +155,8 @@ Window {
                 width: 221
                 height: 46
                 placeholderText: "Enter SRL"
+                font.bold: true
+
             }
 
             Rectangle {
@@ -195,6 +198,8 @@ Window {
             width: 211
             height: 111
             visible: true
+            font.bold: true
+            font.pixelSize: 22
 
 
         }
@@ -203,8 +208,6 @@ Window {
         target: backend
         function onSetName(name){
             labelWelcomeUser.text = name
-            labelWelcomeUser.text.bold = true
-            labelWelcomeUser.font.pointSize = 22
             labelWelcomeUser.visible = true
         }
 
