@@ -7,6 +7,8 @@ from PySide2.QtCore import QObject, Slot, Signal
 
 import serial
 
+os.environ["QT_IM_MODULE"] = "qtvirtualkeyboard"
+
 USB_PORT = "/dev/ttyACM0"
 usb = serial.Serial(USB_PORT, 9600, timeout=2)
 
