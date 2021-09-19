@@ -3,6 +3,7 @@ import QtQuick.Window 2.10
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.10
 import QtQml 2.10
+import QtQuick.VirtualKeyboard 2.1
 
 Window {
     visible: true
