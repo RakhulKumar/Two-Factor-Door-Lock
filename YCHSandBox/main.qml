@@ -84,6 +84,8 @@ Window {
                     groupBoxSOID.visible = false
                     groupBoxSRLKeypad.visible = false
                     groupBoxDCNumber.visible = true
+                    textFieldDCNumber.text = ""
+                    textFieldSRL.text =""
                 }
             }
         }
@@ -175,8 +177,8 @@ Window {
 
                 Text {
                     id: textForceQuitSRL
-                    x: 22
-                    y: 48
+                    x: 17
+                    y: 44
                     text: qsTr("Force Quit")
                     font.pixelSize: 18
                     font.bold: true
@@ -665,13 +667,13 @@ Window {
         }
 
         MouseArea {
-            id: mouseAreaCancelDCNumber
-            x: 338
+            id: mouseAreaCancelSRL
+            x: 345
             y: 528
             width: 97
             height: 64
             onClicked: {
-                textFieldDCNumber.text = ""
+                textFieldSRL.text = ""
 
             }
         }
@@ -679,7 +681,7 @@ Window {
         GroupBox {
             id: groupBoxDCNumber
             x: 400
-            y: 88
+            y: 107
             width: 371
             height: 170
             visible: false
@@ -1139,13 +1141,24 @@ Window {
                 color: "#fd3a3a"
                 radius: 15
                 Image {
-                    id: imageCancel1
+                    id: imageCancelDCNumber
                     x: 0
                     y: 0
                     width: 97
                     height: 67
                     source: "Images/Cancel.png"
                     fillMode: Image.PreserveAspectFit
+
+                    MouseArea {
+                        id: mouseAreaCancelDCNumber
+                        x: 0
+                        y: 0
+                        width: 97
+                        height: 67
+                        onClicked: {
+                            textFieldDCNumber.text = ""
+                        }
+                    }
                 }
             }
 
