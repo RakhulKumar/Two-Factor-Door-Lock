@@ -29,24 +29,15 @@ class MainWindow(QObject):
         def off():
             usb.write(b'led_off')
              
-        id_val = ["101","102","103"]
-        if (name in id_val):
-            self.setName.emit("Welcome User 1")
-            on()
-        else:
-            off()
+        id_val = ["101","102","103","104","105","106","107","108"]
+        #if (name in id_val):
+        #    self.setName.emit("Welcome User 1")
+        #    on()
 
-def handleVisibleChanged():
-    if not QtGui.QGuiApplication.inputMethod().isVisible():
-        return
-    for w in QtGui.QGuiApplication.allWindows():
-        if w.metaObject().className() == "QtVirtualKeyboard::InputView":
-            keyboard = w.findChild(QtCore.QObject, "keyboard")
-            if keyboard is not None:
-                r = w.geometry()
-                r.moveTop(keyboard.property("y"))
-                w.setMask(QtGui.QRegion(r))
-                return
+        for i in id_val:
+            if(name == i):
+                st = (f'door{i}')
+                usb.write(bytes(st))
 
 
 
