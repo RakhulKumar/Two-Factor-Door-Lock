@@ -143,6 +143,7 @@ Window {
             width: 371
             height: 170
             visible: false
+
             Text {
                 id: textEnterSRL
                 x: 0
@@ -191,8 +192,8 @@ Window {
 
                     MouseArea {
                         id: mouseAreaForceQuitSRL
-                        x: 118
-                        y: 76
+                        x: 7
+                        y: 8
                         width: 113
                         height: 64
                         onClicked: {
@@ -678,7 +679,7 @@ Window {
         GroupBox {
             id: groupBoxDCNumber
             x: 400
-            y: 89
+            y: 88
             width: 371
             height: 170
             visible: false
@@ -1202,6 +1203,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:64}D{i:74}
+    D{i:0;formeditorZoom:0.66}
 }
 ##^##*/
