@@ -31,6 +31,7 @@ class MainWindow(QObject):
              
         id_val = ["101","102","103","104","105","106","107","108"]
         if(name == "101"):
+            self.setName.emit("Welcome User 1")
             usb.write(b'door1')
         elif(name == "102"):
             usb.write(b'door2')

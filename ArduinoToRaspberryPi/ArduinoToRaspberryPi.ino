@@ -16,7 +16,7 @@ void loop() {
       String command = Serial.readString();  // read command from serial port
       if (command == "door1") {  // turn on Door1
          digitalWrite(23, HIGH);
-         digitalWrite(LED_BUILTIN, HIGH);
+         //digitalWrite(LED_BUILTIN, HIGH);
       } else if (command == "door2") {  //turn on Door2
          digitalWrite(25, HIGH);
       } else if (command == "door3") {  // turn on Door3
@@ -31,8 +31,8 @@ void loop() {
          digitalWrite(35, HIGH);
       } else if (command == "door8") {  // turn on Door8
          digitalWrite(37, HIGH);
-      }else if(command == "led_off"){
-        digitalWrite(LED_BUILTIN, LOW);
+      }else{
+         digitalWrite(LED_BUILTIN, HIGH);
       }
        
    }

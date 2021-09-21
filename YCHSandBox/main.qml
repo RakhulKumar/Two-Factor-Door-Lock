@@ -680,8 +680,8 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumber
-            x: 400
-            y: 107
+            x: 401
+            y: 89
             width: 371
             height: 170
             visible: false
