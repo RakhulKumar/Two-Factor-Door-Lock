@@ -4,7 +4,7 @@ import os
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal
-
+from PySide2 import QtGui, QtCore, QtWidgets
 
 import serial
 
