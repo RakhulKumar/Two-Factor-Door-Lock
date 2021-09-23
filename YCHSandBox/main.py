@@ -30,12 +30,11 @@ class MainWindow(QObject):
             usb.write(b'led_off')
              
         id_val = ["101","102","103","104","105","106","107","108"]
-        if(name == "101"):
-            self.setName.emit("Welcome User 1")
+        if(name == "101"):   
             usb.write(b'door1')
-        elif(name == "102"):
+        elif(name == "102"):     
             usb.write(b'door2')
-        elif(name == "103"):
+        elif(name == "103"):  
             usb.write(b'door3')
         elif(name == "104"):
             usb.write(b'door4')
@@ -49,9 +48,7 @@ class MainWindow(QObject):
             usb.write(b'door8')
         else:
             usb.write(b'led_off')    
-        #if (name in id_val):
-        #    self.setName.emit("Welcome User 1")
-        #    on()
+        
         '''
         for i in id_val:
             if(name == i):

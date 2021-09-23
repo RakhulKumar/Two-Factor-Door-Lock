@@ -7,9 +7,9 @@ import QtQml 2.10
 
 Window {
     visible: true
-    width: 1024
-    height: 600
-    title: qsTr("YCH Sandbox")
+    width: 1280
+    height: 800
+    title: qsTr("YCH SmartBox")
     color: "#ffffff"
 
     Rectangle {
@@ -18,7 +18,7 @@ Window {
         y: 0
         width: parent.width
         height: parent.height
-        color: "#ffffff"
+        color: "#433d3d"
         gradient: Gradient{
             GradientStop{ position: 1.0; color: "#F1bc09"}
             GradientStop{ position: 0.5; color: "#F1d109"}
@@ -28,8 +28,8 @@ Window {
 
         Image {
             id: ychLogo
-            x: 423
-            y: -26
+            x: 560
+            y: -22
             width: 160
             height: 133
             fillMode: Image.PreserveAspectFit
@@ -37,17 +37,17 @@ Window {
         }
         Text {
             id: textSelActivity
-            x: 64
-            y: 46
+            x: 53
+            y: 26
             text: qsTr("Select Activity")
             font.bold: true
-            font.pixelSize: 26
+            font.pixelSize: 32
         }
         Rectangle {
             id: rectangle
             x: 36
             y: 88
-            width: 238
+            width: 275
             height: 208
             color: "#e1dea0"
             radius: 15
@@ -64,6 +64,7 @@ Window {
                 font.bold: true
                 onToggled: {
                     groupBoxSOID.visible = true
+                    groupBoxSOIDKeypad.visible = true
                     groupBoxDCNumber.visible = false
                     groupBoxDCNumberKeypad.visible = false
                     groupBoxSRL.visible = false
@@ -92,10 +93,10 @@ Window {
 
         GroupBox {
             id: groupBoxSOID
-            x: 400
-            y: 88
-            width: 371
-            height: 161
+            x: 478
+            y: 84
+            width: 404
+            height: 170
             visible: false
 
             Text {
@@ -117,31 +118,63 @@ Window {
             }
 
             Rectangle {
-                id: rectangle1
+                id: rectForceQuitSOID
                 x: 227
                 y: 34
-                width: 120
+                width: 148
                 height: 69
                 color: "#eaeae6"
                 radius: 15
 
                 Image {
-                    id: imagePickup
-                    x: -20
+                    id: imageForceQuitSOID
+                    x: -14
                     y: -6
-                    width: 161
-                    height: 80
-                    source: "Images/Pickup.png"
+                    width: 166
+                    height: 56
+                    source: "Images/Cancel.png"
                     fillMode: Image.PreserveAspectFit
+
+                    Text {
+                        id: textForceQuitSOID
+                        x: 41
+                        y: 46
+                        text: qsTr("Force Quit")
+                        font.pixelSize: 20
+                        font.bold: true
+                    }
+
+                    MouseArea {
+                        id: mouseAreaForceQuitSOID
+                        x: 15
+                        y: 8
+                        width: 143
+                        height: 67
+                        onClicked: {
+                            textFieldSOID.text = ""
+                            groupBoxSOID.visible = false
+                            groupBoxSOIDKeypad.visible = false
+                        }
+                    }
                 }
+            }
+
+            Rectangle {
+                id: rectSOIDKeypad
+                x: 42
+                y: 100
+                width: 138
+                height: 46
+                color: "#433d3d"
+                radius: 15
             }
 
         }
 
         GroupBox {
             id: groupBoxSRL
-            x: 400
-            y: 88
+            x: 477
+            y: 84
             width: 371
             height: 170
             visible: false
@@ -199,7 +232,13 @@ Window {
                         width: 113
                         height: 64
                         onClicked: {
-                            Qt.quit()
+                            //Qt.quit()
+                            textFieldDCNumber.text = ""
+                            textFieldSRL.text = ""
+                            groupBoxDCNumberKeypad.visible = false
+                            groupBoxSRLKeypad.visible = false
+                            groupBoxSRL.visible = false
+                            groupBoxDCNumber.visible = true
                         }
                     }
                 }
@@ -242,8 +281,8 @@ Window {
 
         Label {
             id: labelWelcomeUser
-            x: 798
-            y: 89
+            x: 68
+            y: 302
             width: 211
             height: 111
             visible: true
@@ -255,8 +294,8 @@ Window {
 
         GroupBox {
             id: groupBoxSRLKeypad
-            x: 331
-            y: 264
+            x: 456
+            y: 277
             width: 362
             height: 328
             visible: false
@@ -661,6 +700,11 @@ Window {
                 height: 67
                 onClicked:{
                     backend.welcomeText(textFieldSRL.text)
+                    textFieldDCNumber.text = ""
+                    textFieldSRL.text = ""
+                    groupBoxDCNumber.visible = true
+                    groupBoxSRL.visible = false
+                    groupBoxSRLKeypad.visible = false
                 }
             }
 
@@ -680,8 +724,8 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumber
-            x: 401
-            y: 89
+            x: 477
+            y: 84
             width: 371
             height: 170
             visible: false
@@ -727,7 +771,13 @@ Window {
                         width: 113
                         height: 64
                         onClicked: {
-                            Qt.quit()
+                            //Qt.quit()
+                            textFieldDCNumber.text = ""
+                            textFieldSRL.text = ""
+                            groupBoxDCNumberKeypad.visible = false
+                            groupBoxSRLKeypad.visible = false
+                            groupBoxSRL.visible = false
+                            groupBoxDCNumber.visible = true
                         }
                     }
 
@@ -777,8 +827,8 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumberKeypad
-            x: 322
-            y: 264
+            x: 454
+            y: 274
             width: 362
             height: 328
             visible: false
@@ -812,9 +862,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "1"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "1"
 
-                        }
+                }
             }
 
             Rectangle {
@@ -1031,9 +1081,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "2"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "2"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1043,9 +1093,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                           textFieldDCNumber.text = textFieldDCNumber.text + "3"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "3"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1055,9 +1105,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "4"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "4"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1067,9 +1117,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "5"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "5"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1079,9 +1129,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "6"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "6"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1091,9 +1141,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                           textFieldDCNumber.text = textFieldDCNumber.text + "7"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "7"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1103,9 +1153,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "8"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "8"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1115,9 +1165,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "9"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "9"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1127,9 +1177,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldDCNumber.text = textFieldDCNumber.text + "0"
+                    textFieldDCNumber.text = textFieldDCNumber.text + "0"
 
-                        }
+                }
             }
 
             Rectangle {
@@ -1188,12 +1238,431 @@ Window {
                 width: 96
                 height: 67
                 onClicked: {
-                            if(textFieldDCNumber.text === "1234"){
-                                groupBoxDCNumberKeypad.visible = false
-                                groupBoxDCNumber.visible = false
-                                groupBoxSRL.visible = true
-                            }
+                    if(textFieldDCNumber.text === "1234"){
+                        groupBoxDCNumberKeypad.visible = false
+                        groupBoxDCNumber.visible = false
+                        groupBoxSRL.visible = true
+                    }
+                }
+            }
+        }
+
+        GroupBox {
+            id: groupBoxSOIDKeypad
+            x: 454
+            y: 274
+            width: 362
+            height: 328
+            visible: false
+            Rectangle {
+                id: rectKey20
+                x: 0
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text20
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("1")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit20
+                x: 0
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldSOID.text = textFieldSOID.text + "1"
+
                         }
+            }
+
+            Rectangle {
+                id: rectKey21
+                x: 119
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text21
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("2")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey22
+                x: 237
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text22
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("3")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey23
+                x: 0
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text23
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("4")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey24
+                x: 119
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text24
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("5")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey25
+                x: 237
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text25
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("6")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey26
+                x: 0
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text26
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("7")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey27
+                x: 119
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text27
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("8")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey28
+                x: 237
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text28
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("9")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey29
+                x: 119
+                y: 249
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text29
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("0")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit21
+                x: 119
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldSOID.text = textFieldSOID.text + "2"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit22
+                x: 237
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldSOID.text = textFieldSOID.text + "3"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit23
+                x: 0
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldSOID.text = textFieldSOID.text + "4"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit24
+                x: 119
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldSOID.text = textFieldSOID.text + "5"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit25
+                x: 237
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                    textFieldSOID.text = textFieldSOID.text + "6"
+
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit26
+                x: 0
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                    textFieldSOID.text = textFieldSOID.text + "7"
+
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit27
+                x: 119
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                    textFieldSOID.text = textFieldSOID.text + "8"
+
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit28
+                x: 237
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                    textFieldSOID.text = textFieldSOID.text + "9"
+
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit29
+                x: 119
+                y: 249
+                width: 97
+                height: 67
+                onClicked: {
+                    textFieldSOID.text = textFieldSOID.text + "0"
+
+                }
+            }
+
+            Rectangle {
+                id: rectangleCancelSOID
+                x: 0
+                y: 249
+                width: 97
+                height: 67
+                color: "#fd3a3a"
+                radius: 15
+                Image {
+                    id: imageCancelSOID
+                    x: 0
+                    y: 0
+                    width: 97
+                    height: 67
+                    source: "Images/Cancel.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            Rectangle {
+                id: rectangleConfirmSOID
+                x: 237
+                y: 249
+                width: 97
+                height: 67
+                color: "#63f517"
+                radius: 15
+                Image {
+                    id: image1
+                    x: 0
+                    y: 8
+                    width: 97
+                    height: 51
+                    source: "Images/Confirm.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaConfirm1
+                x: 238
+                y: 249
+                width: 96
+                height: 67
+                onClicked: {
+                    //backend.welcomeText(textFieldSRL.text)
+
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaCancelSOID
+                x: 0
+                y: 249
+                width: 97
+                height: 67
+                onClicked:{
+                    textFieldSOID.text = ""
+                }
             }
         }
     }
@@ -1214,8 +1683,10 @@ Window {
 
 
 
+
+
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}
+    D{i:0;formeditorZoom:0.75}D{i:77}
 }
 ##^##*/
