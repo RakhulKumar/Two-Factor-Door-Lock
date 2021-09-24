@@ -1,13 +1,16 @@
 import sys
 import os
 
+#Importing OTP Verification script
+from OTPVerification import OTPGen
+
+#Importing Qt Modules
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QObject, Slot, Signal
 
-
+#Importing USB module for Arduino
 import serial
-
 
 
 USB_PORT = "/dev/ttyACM0"
@@ -28,8 +31,7 @@ class MainWindow(QObject):
             
         def off():
             usb.write(b'led_off')
-             
-        id_val = ["101","102","103","104","105","106","107","108"]
+
         if(name == "101"):   
             usb.write(b'door1')
         elif(name == "102"):     
@@ -48,14 +50,24 @@ class MainWindow(QObject):
             usb.write(b'door8')
         else:
             usb.write(b'led_off')    
-        
+
         '''
+        id_val = ["101","102","103","104","105","106","107","108"]
         for i in id_val:
             if(name == i):
                 st = (f'door{i}')
                 usb.write(bytes(st))
                 
-        '''    
+        '''
+    setEmailID = Signal(str)
+
+    @Slot(str)
+    def otpReceiver(self,lockerID):
+        print(lockerID)
+        #OTPCheck = OTPGen(lockerID)
+        #if(OTPCheck == True):
+
+
 
 
 if __name__ == "__main__":

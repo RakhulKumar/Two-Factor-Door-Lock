@@ -83,10 +83,13 @@ Window {
                 font.bold: true
                 onToggled: {
                     groupBoxSOID.visible = false
+                    groupBoxSOIDKeypad.visible = false
                     groupBoxSRLKeypad.visible = false
+                    groupBoxSRL.visible = false
                     groupBoxDCNumber.visible = true
                     textFieldDCNumber.text = ""
                     textFieldSRL.text =""
+                    textFieldSOID.text = ""
                 }
             }
         }
@@ -97,7 +100,7 @@ Window {
             y: 84
             width: 404
             height: 170
-            visible: false
+            visible: true
 
             Text {
                 id: textEnterSOID
@@ -114,6 +117,8 @@ Window {
                 y: 48
                 width: 221
                 height: 46
+                font.pointSize: 18
+                font.bold: true
                 placeholderText: "Enter SOID"
             }
 
@@ -167,6 +172,29 @@ Window {
                 height: 46
                 color: "#433d3d"
                 radius: 15
+
+                Text {
+                    id: textSOIDKeypad
+                    x: 23
+                    y: 6
+                    width: 90
+                    height: 30
+                    color: "#f7f6f6"
+                    text: qsTr("Keypad")
+                    font.pixelSize: 25
+                    font.bold: true
+                }
+
+                MouseArea {
+                    id: mouseAreaSOIDKeypad
+                    x: 0
+                    y: 0
+                    width: 138
+                    height: 46
+                    onClicked: {
+                        groupBoxSOIDKeypad.visible = !groupBoxSOIDKeypad.visible
+                    }
+                }
             }
 
         }
@@ -693,7 +721,7 @@ Window {
                 }
             }
             MouseArea{
-                id: mouseAreaConfirm
+                id: mouseAreaConfirmSRL
                 x: 238
                 y: 249
                 width: 96
@@ -746,6 +774,7 @@ Window {
                 height: 46
                 placeholderText: "Enter DC Number"
                 font.bold: true
+                font.pixelSize: 18
             }
 
             Rectangle {
@@ -1253,7 +1282,7 @@ Window {
             y: 274
             width: 362
             height: 328
-            visible: false
+            visible: true
             Rectangle {
                 id: rectKey20
                 x: 0
@@ -1643,13 +1672,17 @@ Window {
             }
 
             MouseArea {
-                id: mouseAreaConfirm1
+                id: mouseAreaConfirmSOID
                 x: 238
                 y: 249
                 width: 96
                 height: 67
                 onClicked: {
-                    //backend.welcomeText(textFieldSRL.text)
+                    if(textFieldSOID.text == "1000"){
+                        backend.otpReceiver(textFieldSOID.text)
+                        groupBoxSOID.visible = false
+                        groupBoxSOIDKeypad.visible = false
+                    }
 
                 }
             }
@@ -1662,6 +1695,95 @@ Window {
                 height: 67
                 onClicked:{
                     textFieldSOID.text = ""
+                }
+            }
+        }
+
+        GroupBox {
+            id: groupBoxOTP
+            x: 888
+            y: 84
+            width: 404
+            height: 170
+            visible: true
+            Text {
+                id: textEnterOTP
+                x: 0
+                y: -6
+                text: qsTr("Enter/Scan OTP")
+                font.pixelSize: 25
+                font.bold: true
+            }
+
+            TextField {
+                id: textFieldOTP
+                x: 0
+                y: 48
+                width: 221
+                height: 46
+                placeholderText: "Enter OTP"
+                font.bold: true
+                font.pointSize: 18
+            }
+
+            Rectangle {
+                id: rectForceQuitOTP
+                x: 227
+                y: 34
+                width: 148
+                height: 69
+                color: "#eaeae6"
+                radius: 15
+                Image {
+                    id: imageForceQuitOTP
+                    x: -14
+                    y: -6
+                    width: 166
+                    height: 56
+                    source: "Images/Cancel.png"
+                    fillMode: Image.PreserveAspectFit
+                    Text {
+                        id: textForceQuitOTP
+                        x: 41
+                        y: 46
+                        text: qsTr("Force Quit")
+                        font.pixelSize: 20
+                        font.bold: true
+                    }
+
+                    MouseArea {
+                        id: mouseAreaForceQuitOTP
+                        x: 19
+                        y: 7
+                        width: 143
+                        height: 67
+                        onClicked: {
+                                    textFieldOTP.text = ""
+                                    groupBoxOTP.visible = false
+                                    groupBoxSOIDKeypad.visible = false
+                                }
+                    }
+                }
+            }
+
+            Rectangle {
+                id: rectOTPKeypad
+                x: 42
+                y: 100
+                width: 138
+                height: 46
+                color: "#433d3d"
+                radius: 15
+                Text {
+                    id: textOTPKeypad
+                    x: 23
+                    y: 6
+                    width: 90
+                    height: 30
+                    color: "#f7f6f6"
+                    text: qsTr("Keypad")
+                    font.pixelSize: 25
+                    font.bold: true
                 }
             }
         }
@@ -1687,6 +1809,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.75}D{i:77}
+    D{i:0;formeditorZoom:1.66}D{i:153}
 }
 ##^##*/
