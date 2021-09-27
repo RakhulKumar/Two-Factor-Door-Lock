@@ -1532,9 +1532,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldSOID.text = textFieldSOID.text + "2"
+                    textFieldSOID.text = textFieldSOID.text + "2"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1544,9 +1544,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldSOID.text = textFieldSOID.text + "3"
+                    textFieldSOID.text = textFieldSOID.text + "3"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1556,9 +1556,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldSOID.text = textFieldSOID.text + "4"
+                    textFieldSOID.text = textFieldSOID.text + "4"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1568,9 +1568,9 @@ Window {
                 width: 97
                 height: 67
                 onClicked: {
-                            textFieldSOID.text = textFieldSOID.text + "5"
+                    textFieldSOID.text = textFieldSOID.text + "5"
 
-                        }
+                }
             }
 
             MouseArea {
@@ -1758,10 +1758,10 @@ Window {
                         width: 143
                         height: 67
                         onClicked: {
-                                    textFieldOTP.text = ""
-                                    groupBoxOTP.visible = false
-                                    groupBoxSOIDKeypad.visible = false
-                                }
+                            textFieldOTP.text = ""
+                            groupBoxOTP.visible = false
+                            groupBoxSOIDKeypad.visible = false
+                        }
                     }
                 }
             }
@@ -1787,12 +1787,439 @@ Window {
                 }
             }
         }
+
+        GroupBox {
+            id: groupBoxOTPKeypad
+            x: 861
+            y: 277
+            width: 362
+            height: 328
+            visible: true
+            Rectangle {
+                id: rectKey30
+                x: 0
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text30
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("1")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit30
+                x: 0
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "1"
+
+                                }
+            }
+
+            Rectangle {
+                id: rectKey31
+                x: 119
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text31
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("2")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey32
+                x: 237
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text32
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("3")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey33
+                x: 0
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text33
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("4")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey34
+                x: 119
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text34
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("5")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey35
+                x: 237
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text35
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("6")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey36
+                x: 0
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text36
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("7")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey37
+                x: 119
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text37
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("8")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey38
+                x: 237
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text38
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("9")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey39
+                x: 119
+                y: 249
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text39
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("0")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit31
+                x: 119
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "2"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit32
+                x: 237
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "3"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit33
+                x: 0
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "4"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit34
+                x: 119
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "5"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit35
+                x: 237
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "6"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit36
+                x: 0
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "7"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit37
+                x: 119
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "8"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit38
+                x: 237
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "9"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit39
+                x: 119
+                y: 249
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "0"
+
+                        }
+            }
+
+            Rectangle {
+                id: rectangleCancelOTP
+                x: 0
+                y: 249
+                width: 97
+                height: 67
+                color: "#fd3a3a"
+                radius: 15
+                Image {
+                    id: imageCancelOTP
+                    x: 0
+                    y: 0
+                    width: 97
+                    height: 67
+                    source: "Images/Cancel.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            Rectangle {
+                id: rectangleConfirmOTP
+                x: 237
+                y: 249
+                width: 97
+                height: 67
+                color: "#63f517"
+                radius: 15
+                Image {
+                    id: image2
+                    x: 0
+                    y: 8
+                    width: 97
+                    height: 51
+                    source: "Images/Confirm.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaConfirmOTP
+                x: 238
+                y: 249
+                width: 96
+                height: 67
+                onClicked: {
+
+                                backend.otpChecker(textFieldOTP.text,labelWelcomeUser.text)
+                                groupBoxSOID.visible = false
+                                groupBoxOTPKeypad.visible = false
+
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaCancelOTP
+                x: 0
+                y: 249
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = ""
+                        }
+            }
+        }
     }
     Connections{
         target: backend
         function onSetName(name){
             labelWelcomeUser.text = name
             labelWelcomeUser.visible = true
+        }
+        function onSetLockerID(boolval){
+           labelWelcomeUser.visible = true
+           labelWelcomeUser.text = boolval
         }
 
     }
@@ -1809,6 +2236,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.66}D{i:153}
+    D{i:0;formeditorZoom:0.5}D{i:162}
 }
 ##^##*/

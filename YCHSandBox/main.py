@@ -2,7 +2,7 @@ import sys
 import os
 
 #Importing OTP Verification script
-from OTPVerification import OTPGen
+from OTPVerification import OTPGen, OTPVerify
 
 #Importing Qt Modules
 from PySide2.QtGui import QGuiApplication
@@ -15,6 +15,7 @@ import serial
 
 USB_PORT = "/dev/ttyACM0"
 usb = serial.Serial(USB_PORT, 9600, timeout=2)
+OTP = ""
 
 class MainWindow(QObject):
     
@@ -59,13 +60,34 @@ class MainWindow(QObject):
                 usb.write(bytes(st))
                 
         '''
-    setEmailID = Signal(str)
-
+    setLockerID = Signal(str)
+    
+ 
     @Slot(str)
+
     def otpReceiver(self,lockerID):
-        print(lockerID)
-        #OTPCheck = OTPGen(lockerID)
-        #if(OTPCheck == True):
+        
+        OTP = OTPGen(lockerID)
+        self.setLockerID.emit(OTP)
+         
+         
+    @Slot(str)
+    def otpChecker(self,userOTP,mainOTP):
+        if(userOTP == self):
+            otp_result = True
+            print(otp_result)
+            self.setLockerID.emit("True")
+        else: 
+            otp_result = False
+
+                
+                    
+        
+            
+
+      
+
+            
 
 
 
