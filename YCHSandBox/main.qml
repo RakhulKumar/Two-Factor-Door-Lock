@@ -1680,8 +1680,8 @@ Window {
                 onClicked: {
                     if(textFieldSOID.text == "1000"){
                         backend.otpReceiver(textFieldSOID.text)
-                        groupBoxSOID.visible = false
-                        groupBoxSOIDKeypad.visible = false
+                        //groupBoxSOID.visible = false
+                        //groupBoxSOIDKeypad.visible = false
                     }
 
                 }
@@ -2190,13 +2190,10 @@ Window {
                 width: 96
                 height: 67
                 onClicked: {
-
-                                backend.otpChecker(textFieldOTP.text,labelWelcomeUser.text)
-                                groupBoxSOID.visible = false
-                                groupBoxOTPKeypad.visible = false
-
-
-                        }
+                    if(textFieldOTP.text === labelWelcomeUser.text){
+                        backend.otpChecker("True")
+                    }
+                }
             }
 
             MouseArea {
@@ -2236,6 +2233,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:162}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

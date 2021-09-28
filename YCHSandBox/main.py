@@ -72,23 +72,13 @@ class MainWindow(QObject):
          
          
     @Slot(str)
-    def otpChecker(self,userOTP,mainOTP):
-        if(userOTP == self):
-            otp_result = True
-            print(otp_result)
+    def otpChecker(self,otpResult):
+        if(otpResult == "True"):
+            #otp_result = True
+            #print(otp_result)
             self.setLockerID.emit("True")
         else: 
-            otp_result = False
-
-                
-                    
-        
-            
-
-      
-
-            
-
+            self.setLockerID.emit("False")
 
 
 
