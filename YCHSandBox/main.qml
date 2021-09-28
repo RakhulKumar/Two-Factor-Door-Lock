@@ -157,8 +157,10 @@ Window {
                         height: 67
                         onClicked: {
                             textFieldSOID.text = ""
-                            groupBoxSOID.visible = false
+                            groupBoxSOID.visible = true
                             groupBoxSOIDKeypad.visible = false
+                            groupBoxDCNumber.visible = false
+                            groupBoxDCNumberKeypad.visible = false
                         }
                     }
                 }
