@@ -225,6 +225,9 @@ Window {
                     y: 0
                     width: 138
                     height: 46
+                    onClicked: {
+                            backend.soidChecker(textFieldSOID.text)
+                    }
                 }
             }
 
@@ -1103,7 +1106,7 @@ Window {
             y: 276
             width: 362
             height: 328
-            visible: false
+            visible: true
             Rectangle {
                 id: rectKey20
                 x: 0
@@ -1499,12 +1502,7 @@ Window {
                 width: 96
                 height: 67
                 onClicked: {
-                    //if(textFieldSOID.text == "1000")
                         backend.soidChecker(textFieldSOID.text)
-                        //groupBoxSOID.visible = false
-                        //groupBoxSOIDKeypad.visible = false
-
-
                 }
             }
 
@@ -1557,7 +1555,7 @@ Window {
                 radius: 15
                 Image {
                     id: imageForceQuitOTP
-                    x: -14
+                    x: -9
                     y: -6
                     width: 166
                     height: 56
@@ -1777,8 +1775,8 @@ Window {
 
         GroupBox {
             id: groupBoxOTPKeypad
-            x: 454
-            y: 276
+            x: 822
+            y: 277
             width: 362
             height: 328
             visible: true

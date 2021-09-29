@@ -3,6 +3,7 @@ import os
 
 #Importing OTP Verification script
 from OTPVerification import OTPGen, OTPVerify
+from SOID_Data import SOID_Data
 
 #Importing Qt Modules
 from PySide2.QtGui import QGuiApplication
@@ -61,9 +62,14 @@ class MainWindow(QObject):
                 
         '''
     setLockerID = Signal(str)
+    soidResult = Signal(str)
     
  
     @Slot(str)
+    
+    def soidChecker(self,SOID):
+        if (SOID in SOID_Data()):
+            self.soidResult.emit("True") 
 
     def otpReceiver(self,lockerID):
         
