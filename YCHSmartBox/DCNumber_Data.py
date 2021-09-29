@@ -1,4 +1,4 @@
-def DCNumber_SRL_Data():
+def DCNumber_Data():
     user_data = {"5001":"101",
                  "5002":"102",
                  "5003":"103",

@@ -64,11 +64,13 @@ Window {
                 font.bold: true
                 onToggled: {
                     groupBoxSOID.visible = true
-                    groupBoxSOIDKeypad.visible = true
+                    groupBoxSOIDKeypad.visible = false
                     groupBoxDCNumber.visible = false
                     groupBoxDCNumberKeypad.visible = false
                     groupBoxSRL.visible = false
                     groupBoxSRLKeypad.visible = false
+                    groupBoxOTP.visible = false
+                    groupBoxOTPKeypad.visible = false
                 }
             }
 
@@ -100,7 +102,7 @@ Window {
             y: 81
             width: 484
             height: 170
-            visible: true
+            visible: false
 
             Text {
                 id: textEnterSOID
@@ -161,6 +163,8 @@ Window {
                             groupBoxSOIDKeypad.visible = false
                             groupBoxDCNumber.visible = false
                             groupBoxDCNumberKeypad.visible = false
+                            groupBoxOTP.visible = false
+                            groupBoxOTPKeypad.visible = false
                         }
                     }
                 }
@@ -202,7 +206,7 @@ Window {
             Rectangle {
                 id: rectSOIDConfirm
                 x: 155
-                y: 100
+                y: 102
                 width: 138
                 height: 46
                 color: "#40433d"
@@ -222,9 +226,12 @@ Window {
                 MouseArea {
                     id: mouseAreaConfirmSOID1
                     x: 0
-                    y: 0
+                    y: 2
                     width: 138
                     height: 46
+                    onClicked: {
+                            backend.soidChecker(textFieldSOID.text)
+                    }
                 }
             }
 
@@ -246,11 +253,11 @@ Window {
 
         GroupBox {
             id: groupBoxSRLKeypad
-            x: 456
-            y: 277
+            x: 900
+            y: 353
             width: 362
             height: 328
-            visible: false
+            visible: true
 
 
 
@@ -677,11 +684,11 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumberKeypad
-            x: 454
-            y: 276
+            x: 900
+            y: 8
             width: 362
             height: 328
-            visible: false
+            visible: true
             Rectangle {
                 id: rectKey10
                 x: 0
@@ -1099,8 +1106,8 @@ Window {
 
         GroupBox {
             id: groupBoxSOIDKeypad
-            x: 456
-            y: 276
+            x: 488
+            y: 282
             width: 362
             height: 328
             visible: false
@@ -1499,12 +1506,7 @@ Window {
                 width: 96
                 height: 67
                 onClicked: {
-                    //if(textFieldSOID.text == "1000")
                         backend.soidChecker(textFieldSOID.text)
-                        //groupBoxSOID.visible = false
-                        //groupBoxSOIDKeypad.visible = false
-
-
                 }
             }
 
@@ -1522,11 +1524,11 @@ Window {
 
         GroupBox {
             id: groupBoxOTP
-            x: 602
-            y: 611
+            x: 432
+            y: 81
             width: 484
             height: 170
-            visible: true
+            visible: false
             Text {
                 id: textEnterOTP
                 x: 0
@@ -1557,7 +1559,7 @@ Window {
                 radius: 15
                 Image {
                     id: imageForceQuitOTP
-                    x: -14
+                    x: -9
                     y: -6
                     width: 166
                     height: 56
@@ -1574,14 +1576,17 @@ Window {
 
                     MouseArea {
                         id: mouseAreaForceQuitOTP
-                        x: -222
-                        y: -40
+                        x: 12
+                        y: 8
                         width: 143
                         height: 67
                         onClicked: {
                             textFieldOTP.text = ""
+                            textFieldSOID.text = ""
                             groupBoxOTP.visible = false
+                            groupBoxOTPKeypad.visible = false
                             groupBoxSOIDKeypad.visible = false
+                            groupBoxSOID.visible = true
                         }
                     }
                 }
@@ -1606,6 +1611,17 @@ Window {
                     font.pixelSize: 25
                     font.bold: true
                 }
+
+                MouseArea {
+                    id: mouseAreaOTPKeypad
+                    x: 0
+                    y: 0
+                    width: 138
+                    height: 46
+                    onClicked: {
+                        groupBoxOTPKeypad.visible = !groupBoxOTPKeypad.visible
+                    }
+                }
             }
 
             Rectangle {
@@ -1626,6 +1642,17 @@ Window {
                     text: qsTr("Confirm")
                     font.pixelSize: 25
                     font.bold: true
+                }
+
+                MouseArea {
+                    id: mouseAreaConfirmOTP1
+                    x: 0
+                    y: 0
+                    width: 138
+                    height: 46
+                    onClicked: {
+                        backend.otpChecker(textFieldOTP.text)
+                    }
                 }
             }
         }
@@ -1777,11 +1804,11 @@ Window {
 
         GroupBox {
             id: groupBoxOTPKeypad
-            x: 454
-            y: 276
+            x: 487
+            y: 282
             width: 362
             height: 328
-            visible: true
+            visible: false
             Rectangle {
                 id: rectKey30
                 x: 0
@@ -2177,9 +2204,7 @@ Window {
                 width: 96
                 height: 67
                 onClicked: {
-                    if(textFieldOTP.text === labelWelcomeUser.text){
-                        backend.otpChecker("True")
-                    }
+                    backend.otpChecker(textFieldOTP.text)
                 }
             }
 
@@ -2320,17 +2345,6 @@ Window {
                     font.pixelSize: 25
                     font.bold: true
                 }
-
-                MouseArea {
-                    id: mouseAreaSRLKeypad1
-                    x: 598
-                    y: -47
-                    width: 129
-                    height: 49
-                    onClicked: {
-                        groupBoxSRLKeypad.visible = true
-                    }
-                }
             }
 
             MouseArea {
@@ -2349,10 +2363,13 @@ Window {
             labelWelcomeUser.text = name
             labelWelcomeUser.visible = true
         }
-        function onSetLockerID(boolval){
-           labelWelcomeUser.visible = true
-           labelWelcomeUser.text = boolval
+        function onOtpResult(result){
+            if(result === "True"){
+                groupBoxOTP.visible = false
+                groupBoxOTPKeypad.visible = false
         }
+     }
+
         function onSoidResult(result){
             if(result === "True"){
                 groupBoxOTP.visible = true
@@ -2369,12 +2386,8 @@ Window {
 
 
 
-
-
-
-
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:23}D{i:21}D{i:145}D{i:157}D{i:208}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

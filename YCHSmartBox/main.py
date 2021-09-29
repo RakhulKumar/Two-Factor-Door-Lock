@@ -2,8 +2,10 @@ import sys
 import os
 
 #Importing OTP Verification script
-from OTPGenerator import OTPGen, OTPVerify
+from OTPGenerator import OTPGen
 from SOID_Data import SOID_Data
+from OpenLockSOID import openLockSOID
+
 
 #Importing Qt Modules
 from PySide2.QtGui import QGuiApplication
@@ -16,7 +18,8 @@ import serial
 
 USB_PORT = "/dev/ttyACM0"
 usb = serial.Serial(USB_PORT, 9600, timeout=2)
-OTP = ""
+
+
 
 class MainWindow(QObject):
     
@@ -26,13 +29,7 @@ class MainWindow(QObject):
     setName = Signal(str)
 
     @Slot(str)
-    def welcomeText(self, name):
-        
-        def on():
-            usb.write(b'led_on')
-            
-        def off():
-            usb.write(b'led_off')
+    def SRL_Lock_Open(self, name):
 
         if(name == "101"):   
             usb.write(b'door1')
@@ -61,28 +58,33 @@ class MainWindow(QObject):
                 usb.write(bytes(st))
                 
         '''
-    setLockerID = Signal(str)
+    
+    
+    otpResult = Signal(str)
     soidResult = Signal(str)
+    OTP = ""
+    SOID = ""
     
- 
-    @Slot(str)
-    
-    def soidChecker(self,SOID):
-        if (SOID in SOID_Data()):
-            self.soidResult.emit("True") 
 
-    def otpReceiver(self,lockerID):
-        
-        OTP = OTPGen(lockerID)
-        self.setLockerID.emit(OTP)
-         
-         
     @Slot(str)
-    def otpChecker(self,otpResult):
-        if(otpResult == "True"):
-            self.setLockerID.emit("True")
+    def soidChecker(self,SOID):
+        self.SOID = SOID
+        local_data = SOID_Data()
+        for i in local_data:
+            if (SOID == i):
+                self.soidResult.emit("True")
+                self.OTP = OTPGen(local_data[i])
+                
+                 
+    @Slot(str)
+    def otpChecker(self,user_otp):
+        generatedOTP = self.OTP
+        if(user_otp == generatedOTP):
+            self.otpResult.emit("True")
+            command = openLockSOID(self.SOID)
+            usb.write(command)
         else: 
-            self.setLockerID.emit("False")
+            self.otpResult.emit("False")
 
 
 
