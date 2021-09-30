@@ -2,7 +2,7 @@ import sys
 import os
 
 #Importing OTP Verification script
-from OTPVerification import OTPGen, OTPVerify
+from OTPGenerator import OTPGen, OTPVerify
 from SOID_Data import SOID_Data
 
 #Importing Qt Modules

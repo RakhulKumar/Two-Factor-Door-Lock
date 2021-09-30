@@ -3,7 +3,9 @@ import math
 import random
 import smtplib
 
-user_data = {"1000":"rakhul.kumar007@gmail.com","102":"rakhul.kumar007@icloud.com"}
+from SOID_Data import SOID_Data
+
+user_data = SOID_Data()
 
 def OTPGen(lockerID):
     if(lockerID in user_data):
