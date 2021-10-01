@@ -36,7 +36,7 @@ Window {
             source: "Images/YCHLogo.png"
         }
         Text {
-            id: textSelActivity
+            id: textSelectActivity
             x: 53
             y: 26
             text: qsTr("Select Activity")
@@ -44,7 +44,7 @@ Window {
             font.pixelSize: 32
         }
         Rectangle {
-            id: rectangle
+            id: rectangleOptions
             x: 36
             y: 88
             width: 275
@@ -1794,9 +1794,9 @@ Window {
 
                 MouseArea {
                     id: mouseAreaDCNumberConfirm1
-                    x: 8
+                    x: 0
                     y: 0
-                    width: 125
+                    width: 141
                     height: 49
                 }
             }

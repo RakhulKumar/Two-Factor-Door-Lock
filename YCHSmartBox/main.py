@@ -4,7 +4,7 @@ import os
 #Importing OTP Verification script
 from OTPGenerator import OTPGen
 from SOID_Data import SOID_Data
-from OpenLockSOID import openLockSOID
+#from OpenLockSOID import openLockSOID
 
 
 #Importing Qt Modules
@@ -81,8 +81,11 @@ class MainWindow(QObject):
         generatedOTP = self.OTP
         if(user_otp == generatedOTP):
             self.otpResult.emit("True")
-            command = openLockSOID(self.SOID)
-            usb.write(command)
+            if(self.SOID == "1001"):
+                usb.write(b'door1')
+            elif(self.SOID == "1002"):
+                usb.write(b'door2')
+            
         else: 
             self.otpResult.emit("False")
 
