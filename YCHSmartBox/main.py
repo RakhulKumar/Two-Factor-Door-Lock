@@ -15,6 +15,8 @@ from PySide2.QtCore import QObject, Slot, Signal
 #Importing USB module for Arduino
 import serial
 
+from DCNumber_Data import DCNumber_Data
+
 
 USB_PORT = "/dev/ttyACM0"
 usb = serial.Serial(USB_PORT, 9600, timeout=2)
@@ -26,38 +28,43 @@ class MainWindow(QObject):
     def __init__(self):
         QObject.__init__(self)
 
+    dcNumberResult = Signal(str)
+    DCNumber = ""
+    SRL = ""
     setName = Signal(str)
 
     @Slot(str)
-    def SRL_Lock_Open(self, name):
+    def dcNumberChecker(self,dcNumber):
+        self.DCNumber = dcNumber
+        local_data = DCNumber_Data()
+        for i in local_data:
+            if(i == self.DCNumber):
+                self.SRL = local_data[i]
+                self.dcNumberResult.emit("True")
 
-        if(name == "101"):   
-            usb.write(b'door1')
-        elif(name == "102"):     
-            usb.write(b'door2')
-        elif(name == "103"):  
-            usb.write(b'door3')
-        elif(name == "104"):
-            usb.write(b'door4')
-        elif(name == "105"):
-            usb.write(b'door5')
-        elif(name == "106"):
-            usb.write(b'door6')
-        elif(name == "107"):
-            usb.write(b'door7')
-        elif(name == "108"):
-            usb.write(b'door8')
-        else:
-            usb.write(b'led_off')    
 
-        '''
-        id_val = ["101","102","103","104","105","106","107","108"]
-        for i in id_val:
-            if(name == i):
-                st = (f'door{i}')
-                usb.write(bytes(st))
-                
-        '''
+    @Slot(str)
+    def srlLockOpen(self, user_SRL):
+        if(self.SRL == user_SRL):
+            if(user_SRL == "101"):   
+                usb.write(b'door1')
+            elif(user_SRL == "102"):     
+                usb.write(b'door2')
+            elif(user_SRL == "103"):  
+                usb.write(b'door3')
+            elif(user_SRL == "104"):
+                usb.write(b'door4')
+            elif(user_SRL == "105"):
+                usb.write(b'door5')
+            elif(user_SRL == "106"):
+                usb.write(b'door6')
+            elif(user_SRL == "107"):
+                usb.write(b'door7')
+            elif(user_SRL == "108"):
+                usb.write(b'door8')
+            else:
+                usb.write(b'led_off')    
+
     
     
     otpResult = Signal(str)
@@ -84,8 +91,7 @@ class MainWindow(QObject):
             if(self.SOID == "1001"):
                 usb.write(b'door1')
             elif(self.SOID == "1002"):
-                usb.write(b'door2')
-            
+                usb.write(b'door2')       
         else: 
             self.otpResult.emit("False")
 

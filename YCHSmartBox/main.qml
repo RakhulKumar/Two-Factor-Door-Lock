@@ -658,12 +658,7 @@ Window {
                 width: 96
                 height: 67
                 onClicked:{
-                    backend.welcomeText(textFieldSRL.text)
-                    textFieldDCNumber.text = ""
-                    textFieldSRL.text = ""
-                    groupBoxDCNumber.visible = true
-                    groupBoxSRL.visible = false
-                    groupBoxSRLKeypad.visible = false
+                    backend.srlLockOpen(textFieldSRL.text)
                 }
             }
 
@@ -1095,11 +1090,7 @@ Window {
                 width: 96
                 height: 67
                 onClicked: {
-                    if(textFieldDCNumber.text === "1234"){
-                        groupBoxDCNumberKeypad.visible = false
-                        groupBoxDCNumber.visible = false
-                        groupBoxSRL.visible = true
-                    }
+                    backend.dcNumberChecker(textFieldDCNumber.text)
                 }
             }
         }
@@ -1659,8 +1650,8 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumber
-            x: 92
-            y: 599
+            x: 120
+            y: 577
             width: 484
             height: 170
             visible: true
@@ -1694,8 +1685,8 @@ Window {
                 radius: 15
                 Image {
                     id: imageDCNumber
-                    x: 28
-                    y: -5
+                    x: 24
+                    y: -7
                     width: 102
                     height: 60
                     source: "Images/Cancel.png"
@@ -1719,8 +1710,8 @@ Window {
 
                     Text {
                         id: textForceQuitDCNumber
-                        x: -2
-                        y: 45
+                        x: -3
+                        y: 46
                         text: qsTr("Force Quit")
                         font.pixelSize: 21
                         font.bold: true
@@ -1793,11 +1784,14 @@ Window {
 
 
                 MouseArea {
-                    id: mouseAreaDCNumberConfirm1
+                    id: mouseAreaConfirmDCNumber1
                     x: 0
                     y: 0
                     width: 141
                     height: 49
+                    onClicked: {
+                        backend.dcNumberChecker(textFieldDCNumber.text)
+                    }
                 }
             }
         }
@@ -2221,8 +2215,8 @@ Window {
         }
         GroupBox {
             id: groupBoxSRL
-            x: 13
-            y: 414
+            x: 36
+            y: 394
             width: 484
             height: 170
             visible: true
@@ -2260,15 +2254,15 @@ Window {
                 Text {
                     id: textForceQuitSRL
                     x: 35
-                    y: 39
+                    y: 41
                     text: qsTr("Force Quit")
                     font.pixelSize: 21
                     font.bold: true
                 }
                 Image {
                     id: imageSRLForceQuit
-                    x: 25
-                    y: -8
+                    x: 22
+                    y: -6
                     width: 126
                     height: 61
                     source: "Images/Cancel.png"
@@ -2304,8 +2298,8 @@ Window {
 
                 Text {
                     id: textSRLKeypad
-                    x: 30
-                    y: 8
+                    x: 26
+                    y: 7
                     width: 91
                     height: 33
                     color: "#f1efef"
@@ -2318,7 +2312,7 @@ Window {
                     id: mouseAreaSRLKeypad
                     x: 2
                     y: 0
-                    width: 143
+                    width: 137
                     height: 49
                     onClicked: {
                         groupBoxSRLKeypad.visible = true
@@ -2336,7 +2330,7 @@ Window {
                 radius: 15
                 Text {
                     id: textSRLConfirm1
-                    x: 30
+                    x: 23
                     y: 8
                     width: 91
                     height: 33
@@ -2353,6 +2347,9 @@ Window {
                 y: 97
                 width: 146
                 height: 49
+                onClicked: {
+                    backend.srlLockOpen(textFieldSRL.text)
+                }
             }
 
         }
@@ -2375,6 +2372,13 @@ Window {
                 groupBoxOTP.visible = true
                 groupBoxSOID.visible = false
                 groupBoxSOIDKeypad.visible = false
+            }
+        }
+        function onDcNumberResult(result){
+            if(result === "True"){
+                groupBoxDCNumber.visible = false
+                groupBoxDCNumberKeypad.visible = false
+                groupBoxSRL.visible = true
             }
         }
 
