@@ -37,30 +37,32 @@ Window {
         }
         Text {
             id: textSelectActivity
-            x: 53
-            y: 26
+            x: 41
+            y: 32
+            width: 291
+            height: 50
             text: qsTr("Select Activity")
             font.bold: true
-            font.pixelSize: 32
+            font.pixelSize: 40
         }
         Rectangle {
             id: rectangleOptions
             x: 36
             y: 88
-            width: 275
-            height: 208
+            width: 302
+            height: 230
             color: "#e1dea0"
             radius: 15
             border.width: 1
 
             RadioButton {
                 id: radioButtonPickMaterial
-                x: 8
-                y: 37
-                width: 214
+                x: 11
+                y: 31
+                width: 278
                 height: 44
                 text: qsTr("Pick Material")
-                font.pixelSize: 22
+                font.pixelSize: 25
                 font.bold: true
                 onToggled: {
                     groupBoxSOID.visible = true
@@ -77,11 +79,11 @@ Window {
             RadioButton {
                 id: radioButtonRefillMaterial
                 x: 8
-                y: 110
-                width: 214
+                y: 93
+                width: 286
                 height: 44
                 text: qsTr("Refill Material")
-                font.pixelSize: 22
+                font.pixelSize: 25
                 font.bold: true
                 onToggled: {
                     groupBoxSOID.visible = false
@@ -93,6 +95,17 @@ Window {
                     textFieldSRL.text =""
                     textFieldSOID.text = ""
                 }
+            }
+
+            RadioButton {
+                id: radioButtonRefillMaterial1
+                x: 8
+                y: 152
+                width: 286
+                height: 44
+                text: qsTr("Master Settings")
+                font.pixelSize: 25
+                font.bold: true
             }
         }
 
@@ -240,8 +253,8 @@ Window {
 
         Label {
             id: labelWelcomeUser
-            x: 44
-            y: 297
+            x: 82
+            y: 333
             width: 211
             height: 111
             visible: true
@@ -253,11 +266,11 @@ Window {
 
         GroupBox {
             id: groupBoxSRLKeypad
-            x: 900
-            y: 353
+            x: 485
+            y: 283
             width: 362
             height: 328
-            visible: true
+            visible: false
 
 
 
@@ -679,11 +692,11 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumberKeypad
-            x: 900
-            y: 8
+            x: 485
+            y: 283
             width: 362
             height: 328
-            visible: true
+            visible: false
             Rectangle {
                 id: rectKey10
                 x: 0
@@ -1516,7 +1529,7 @@ Window {
         GroupBox {
             id: groupBoxOTP
             x: 432
-            y: 81
+            y: 82
             width: 484
             height: 170
             visible: false
@@ -1650,11 +1663,11 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumber
-            x: 120
-            y: 577
+            x: 424
+            y: 81
             width: 484
             height: 170
-            visible: true
+            visible: false
             Text {
                 id: textEnterDCNumber
                 x: 0
@@ -1766,7 +1779,7 @@ Window {
                     width: 137
                     height: 49
                     onClicked: {
-                        groupBoxDCNumberKeypad.visible = true
+                        groupBoxDCNumberKeypad.visible = !groupBoxDCNumberKeypad.visible
                     }
                 }
 
@@ -2215,11 +2228,11 @@ Window {
         }
         GroupBox {
             id: groupBoxSRL
-            x: 36
-            y: 394
+            x: 427
+            y: 82
             width: 484
             height: 170
-            visible: true
+            visible: false
 
             Text {
                 id: textEnterSRL
@@ -2315,7 +2328,7 @@ Window {
                     width: 137
                     height: 49
                     onClicked: {
-                        groupBoxSRLKeypad.visible = true
+                        groupBoxSRLKeypad.visible = !groupBoxSRLKeypad.visible
                     }
                 }
             }
@@ -2392,6 +2405,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;formeditorZoom:0.5}D{i:11}
 }
 ##^##*/

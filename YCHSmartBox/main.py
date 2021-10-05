@@ -91,7 +91,19 @@ class MainWindow(QObject):
             if(self.SOID == "1001"):
                 usb.write(b'door1')
             elif(self.SOID == "1002"):
-                usb.write(b'door2')       
+                usb.write(b'door2')  
+            elif(self.SOID == "1003"):
+                usb.write(b'door3')
+            elif(self.SOID == "1004"):
+                usb.write(b'door4')
+            elif(self.SOID == "1005"):
+                usb.write(b'door5')
+            elif(self.SOID == "1006"):
+                usb.write(b'door6')
+            elif(self.SOID == "1007"):
+                usb.write(b'door7')
+            elif(self.SOID == "1008"):
+                usb.write(b'door8')     
         else: 
             self.otpResult.emit("False")
 
