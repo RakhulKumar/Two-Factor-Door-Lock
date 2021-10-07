@@ -21,3 +21,9 @@ for i in dicti:
 
 '''
 
+import datetime
+
+current_time = datetime.datetime.now()
+dat = str(current_time)
+print(type(dat))
+print(dat)

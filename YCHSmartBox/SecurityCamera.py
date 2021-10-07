@@ -1,26 +1,19 @@
-import numpy as np
 import cv2
-import time
 
-def securityCam():
-  cap = cv2.VideoCapture(0)
-  time.sleep(0.5)
-  ret, frame = cap.read()
-  
-  #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-  #gray = cv2.resize(gray,(600,600))
-    #cv2.imshow('frame',gray)
-  cv2.waitKey(0)
-  cv2.imwrite('frame.png',frame)
-    
-    #if(cv2.waitKey(1) & 0xFF == ord('q')):
-      
-    #  break
+def security_camera(filename):
+    camera = cv2.VideoCapture(0)
+    ramp_frames=30
+    x=1280
+    y=720
 
-  cap.release()
-  cv2.destroyAllWindows()
+    # Set Resolution
+    camera.set(3, x)
+    camera.set(4, y)
 
-
-
-securityCam()
+    # Adjust camera lighting
+    for i in range(ramp_frames):
+        temp = camera.read()
+    retval, im = camera.read()
+    cv2.imwrite(filename,im)
+    del(camera)
 

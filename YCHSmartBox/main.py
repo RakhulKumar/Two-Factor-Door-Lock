@@ -1,11 +1,13 @@
 import sys
 import os
+import datetime
 
 #Importing OTP Verification script
 from OTPGenerator import OTPGen
 from SOID_Data import SOID_Data
-#from OpenLockSOID import openLockSOID
 
+#Importing SecurityCamera
+from SecurityCamera import security_camera
 
 #Importing Qt Modules
 from PySide2.QtGui import QGuiApplication
@@ -48,6 +50,9 @@ class MainWindow(QObject):
         if(self.SRL == user_SRL):
             if(user_SRL == "101"):   
                 usb.write(b'door1')
+                curr_date = str(datetime.datetime.now())
+                filename = curr_date + ".jpg"
+                security_camera(filename)
             elif(user_SRL == "102"):     
                 usb.write(b'door2')
             elif(user_SRL == "103"):  
