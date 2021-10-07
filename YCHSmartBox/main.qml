@@ -57,8 +57,8 @@ Window {
 
             RadioButton {
                 id: radioButtonPickMaterial
-                x: 11
-                y: 31
+                x: 8
+                y: 51
                 width: 278
                 height: 44
                 text: qsTr("Pick Material")
@@ -79,7 +79,7 @@ Window {
             RadioButton {
                 id: radioButtonRefillMaterial
                 x: 8
-                y: 93
+                y: 135
                 width: 286
                 height: 44
                 text: qsTr("Refill Material")
@@ -95,17 +95,6 @@ Window {
                     textFieldSRL.text =""
                     textFieldSOID.text = ""
                 }
-            }
-
-            RadioButton {
-                id: radioButtonRefillMaterial1
-                x: 8
-                y: 152
-                width: 286
-                height: 44
-                text: qsTr("Master Settings")
-                font.pixelSize: 25
-                font.bold: true
             }
         }
 
@@ -252,7 +241,7 @@ Window {
 
 
         Label {
-            id: labelWelcomeUser
+            id: labelErrorMessage
             x: 82
             y: 333
             width: 211
@@ -2369,10 +2358,6 @@ Window {
     }
     Connections{
         target: backend
-        function onSetName(name){
-            labelWelcomeUser.text = name
-            labelWelcomeUser.visible = true
-        }
         function onOtpResult(result){
             if(result === "True"){
                 groupBoxOTP.visible = false
@@ -2389,9 +2374,12 @@ Window {
         }
         function onDcNumberResult(result){
             if(result === "True"){
+                labelErrorMessage.text = "3 "
                 groupBoxDCNumber.visible = false
                 groupBoxDCNumberKeypad.visible = false
                 groupBoxSRL.visible = true
+                
+                //labelErrorMessage.visible = false
             }
         }
 
@@ -2405,6 +2393,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:11}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

@@ -43,6 +43,8 @@ class MainWindow(QObject):
             if(i == self.DCNumber):
                 self.SRL = local_data[i]
                 self.dcNumberResult.emit("True")
+            else:
+                self.dcNumberResult.emit("False")
 
 
     @Slot(str)
