@@ -1,4 +1,5 @@
 import cv2
+import os
 
 def security_camera(filename):
     camera = cv2.VideoCapture(0)
@@ -10,10 +11,12 @@ def security_camera(filename):
     camera.set(3, x)
     camera.set(4, y)
 
+    #Target folder for storing images
+    path = '/home/ubuntu/Downloads/Two-Factor-Security-Door/YCHSmartBox/SecurityCam'
+
     # Adjust camera lighting
     for i in range(ramp_frames):
         temp = camera.read()
-    retval, im = camera.read()
-    cv2.imwrite(filename,im)
+    retval, snap = camera.read()
+    cv2.imwrite(os.path.join(path,filename),snap)
     del(camera)
-

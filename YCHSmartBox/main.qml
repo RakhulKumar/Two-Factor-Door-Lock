@@ -73,6 +73,8 @@ Window {
                     groupBoxSRLKeypad.visible = false
                     groupBoxOTP.visible = false
                     groupBoxOTPKeypad.visible = false
+                    labelErrorMessage.text = ""
+                    labelErrorMessage.visible = false
                 }
             }
 
@@ -94,6 +96,8 @@ Window {
                     textFieldDCNumber.text = ""
                     textFieldSRL.text =""
                     textFieldSOID.text = ""
+                    labelErrorMessage.text = ""
+                    labelErrorMessage.visible = false
                 }
             }
         }
@@ -167,6 +171,8 @@ Window {
                             groupBoxDCNumberKeypad.visible = false
                             groupBoxOTP.visible = false
                             groupBoxOTPKeypad.visible = false
+                            labelErrorMessage.visible = false
+                            labelErrorMessage.text = ""
                         }
                     }
                 }
@@ -1580,6 +1586,8 @@ Window {
                             groupBoxOTPKeypad.visible = false
                             groupBoxSOIDKeypad.visible = false
                             groupBoxSOID.visible = true
+                            labelErrorMessage.text = ""
+                            labelErrorMessage.visible = false
                         }
                     }
                 }
@@ -2362,7 +2370,13 @@ Window {
             if(result === "True"){
                 groupBoxOTP.visible = false
                 groupBoxOTPKeypad.visible = false
+                labelErrorMessage.text = "Correct OTP"
+                labelErrorMessage.visible = true
         }
+            else if(result == "False"){
+                labelErrorMessage.text = "Wrong OTP. Please try again"
+                labelErrorMessage.visible = true
+            }
      }
 
         function onSoidResult(result){
@@ -2374,12 +2388,19 @@ Window {
         }
         function onDcNumberResult(result){
             if(result === "True"){
-                labelErrorMessage.text = "3 "
+                labelErrorMessage.text = ""
                 groupBoxDCNumber.visible = false
                 groupBoxDCNumberKeypad.visible = false
                 groupBoxSRL.visible = true
                 
                 //labelErrorMessage.visible = false
+            }
+        }
+        function onSrlResult(result){
+            if(result === "True"){
+                groupBoxSRL.visible = false
+                groupBoxSRLKeypad.visible = false
+                textFieldSRL.text = ""
             }
         }
 
