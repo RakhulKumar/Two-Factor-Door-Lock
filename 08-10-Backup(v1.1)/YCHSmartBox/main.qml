@@ -71,6 +71,8 @@ Window {
                     groupBoxDCNumberKeypad.visible = false
                     groupBoxSRL.visible = false
                     groupBoxSRLKeypad.visible = false
+                    groupBoxOTP.visible = false
+                    groupBoxOTPKeypad.visible = false
                     labelErrorMessage.text = ""
                     labelErrorMessage.visible = false
                 }
@@ -167,6 +169,8 @@ Window {
                             groupBoxSOIDKeypad.visible = false
                             groupBoxDCNumber.visible = false
                             groupBoxDCNumberKeypad.visible = false
+                            groupBoxOTP.visible = false
+                            groupBoxOTPKeypad.visible = false
                             labelErrorMessage.visible = false
                             labelErrorMessage.text = ""
                         }
@@ -234,11 +238,7 @@ Window {
                     width: 138
                     height: 46
                     onClicked: {
-                            groupBoxSOID.visible = false
-                            groupBoxSOIDKeypad.visible = false
                             backend.soidChecker(textFieldSOID.text)
-
-
                     }
                 }
             }
@@ -666,11 +666,7 @@ Window {
                 width: 96
                 height: 67
                 onClicked:{
-                    groupBoxSRL.visible = false
-                    groupBoxSRLKeypad.visible = false
-                    textFieldSRL.text = ""
                     backend.srlLockOpen(textFieldSRL.text)
-
                 }
             }
 
@@ -1082,39 +1078,35 @@ Window {
                 y: 249
                 width: 97
                 height: 67
-                color: "#433d3d"
+                color: "#63f517"
                 radius: 15
-
-                Text {
-                    id: text31
-                    x: 14
-                    y: 18
-                    width: 69
-                    height: 40
-                    color: "#f5f4f4"
-                    text: qsTr("Space")
-                    font.pixelSize: 25
-                    horizontalAlignment: Text.AlignHCenter
-                    font.bold: true
+                Image {
+                    id: imageConfirmDCNumber
+                    x: 0
+                    y: 8
+                    width: 97
+                    height: 51
+                    source: "Images/Confirm.png"
+                    fillMode: Image.PreserveAspectFit
                 }
             }
 
             MouseArea {
-                id: mouseAreaDCSpace
+                id: mouseAreaConfirmDCNumber
                 x: 238
                 y: 249
                 width: 96
                 height: 67
                 onClicked: {
-                    textFieldDCNumber.text = textFieldDCNumber.text + " "
+                    backend.dcNumberChecker(textFieldDCNumber.text)
                 }
             }
         }
 
         GroupBox {
             id: groupBoxSOIDKeypad
-            x: 485
-            y: 283
+            x: 488
+            y: 282
             width: 362
             height: 328
             visible: false
@@ -1446,7 +1438,7 @@ Window {
 
             MouseArea {
                 id: mouseAreaDigit28
-                x: 235
+                x: 237
                 y: 171
                 width: 97
                 height: 67
@@ -1493,31 +1485,27 @@ Window {
                 y: 249
                 width: 97
                 height: 67
-                color: "#433d3d"
+                color: "#63f517"
                 radius: 15
-
-                Text {
-                    id: text30
-                    x: 14
-                    y: 18
-                    width: 69
-                    height: 40
-                    color: "#f5f4f4"
-                    text: qsTr("Space")
-                    font.pixelSize: 25
-                    horizontalAlignment: Text.AlignHCenter
-                    font.bold: true
+                Image {
+                    id: image1
+                    x: 0
+                    y: 8
+                    width: 97
+                    height: 51
+                    source: "Images/Confirm.png"
+                    fillMode: Image.PreserveAspectFit
                 }
             }
 
             MouseArea {
-                id: mouseAreaSOIDSpace
-                x: 236
+                id: mouseAreaConfirmSOID
+                x: 238
                 y: 249
                 width: 96
                 height: 67
                 onClicked: {
-                        textFieldSOID.text = textFieldSOID.text + " "
+                        backend.soidChecker(textFieldSOID.text)
                 }
             }
 
@@ -1529,6 +1517,143 @@ Window {
                 height: 67
                 onClicked:{
                     textFieldSOID.text = ""
+                }
+            }
+        }
+
+        GroupBox {
+            id: groupBoxOTP
+            x: 432
+            y: 82
+            width: 484
+            height: 170
+            visible: false
+            Text {
+                id: textEnterOTP
+                x: 0
+                y: -6
+                text: qsTr("Enter OTP")
+                font.pixelSize: 25
+                font.bold: true
+            }
+
+            TextField {
+                id: textFieldOTP
+                x: 1
+                y: 34
+                width: 307
+                height: 46
+                placeholderText: "Enter OTP"
+                font.bold: true
+                font.pointSize: 18
+            }
+
+            Rectangle {
+                id: rectForceQuitOTP
+                x: 324
+                y: 25
+                width: 148
+                height: 69
+                color: "#eaeae6"
+                radius: 15
+                Image {
+                    id: imageForceQuitOTP
+                    x: -9
+                    y: -6
+                    width: 166
+                    height: 56
+                    source: "Images/Cancel.png"
+                    fillMode: Image.PreserveAspectFit
+                    Text {
+                        id: textForceQuitOTP
+                        x: 33
+                        y: 48
+                        text: qsTr("Force Quit")
+                        font.pixelSize: 20
+                        font.bold: true
+                    }
+
+                    MouseArea {
+                        id: mouseAreaForceQuitOTP
+                        x: 12
+                        y: 8
+                        width: 143
+                        height: 67
+                        onClicked: {
+                            textFieldOTP.text = ""
+                            textFieldSOID.text = ""
+                            groupBoxOTP.visible = false
+                            groupBoxOTPKeypad.visible = false
+                            groupBoxSOIDKeypad.visible = false
+                            groupBoxSOID.visible = true
+                            labelErrorMessage.text = ""
+                            labelErrorMessage.visible = false
+                        }
+                    }
+                }
+            }
+
+            Rectangle {
+                id: rectOTPKeypad
+                x: 1
+                y: 100
+                width: 138
+                height: 46
+                color: "#433d3d"
+                radius: 15
+                Text {
+                    id: textOTPKeypad
+                    x: 23
+                    y: 6
+                    width: 90
+                    height: 30
+                    color: "#f7f6f6"
+                    text: qsTr("Keypad")
+                    font.pixelSize: 25
+                    font.bold: true
+                }
+
+                MouseArea {
+                    id: mouseAreaOTPKeypad
+                    x: 0
+                    y: 0
+                    width: 138
+                    height: 46
+                    onClicked: {
+                        groupBoxOTPKeypad.visible = !groupBoxOTPKeypad.visible
+                    }
+                }
+            }
+
+            Rectangle {
+                id: rectOTPConfirm1
+                x: 158
+                y: 100
+                width: 138
+                height: 46
+                color: "#433d3d"
+                radius: 15
+                Text {
+                    id: textOTPConfirm
+                    x: 24
+                    y: 7
+                    width: 90
+                    height: 30
+                    color: "#f7f6f6"
+                    text: qsTr("Confirm")
+                    font.pixelSize: 25
+                    font.bold: true
+                }
+
+                MouseArea {
+                    id: mouseAreaConfirmOTP1
+                    x: 0
+                    y: 0
+                    width: 138
+                    height: 46
+                    onClicked: {
+                        backend.otpChecker(textFieldOTP.text)
+                    }
                 }
             }
         }
@@ -1675,13 +1800,427 @@ Window {
                     width: 141
                     height: 49
                     onClicked: {
-                        groupBoxDCNumber.visible = false
-                        groupBoxDCNumberKeypad.visible = false
-                        groupBoxSRL.visible = true
                         backend.dcNumberChecker(textFieldDCNumber.text)
-
                     }
                 }
+            }
+        }
+
+        GroupBox {
+            id: groupBoxOTPKeypad
+            x: 487
+            y: 282
+            width: 362
+            height: 328
+            visible: false
+            Rectangle {
+                id: rectKey30
+                x: 0
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text30
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("1")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit30
+                x: 0
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "1"
+
+                                }
+            }
+
+            Rectangle {
+                id: rectKey31
+                x: 119
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text31
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("2")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey32
+                x: 237
+                y: 7
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text32
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("3")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey33
+                x: 0
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text33
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("4")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey34
+                x: 119
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text34
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("5")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey35
+                x: 237
+                y: 86
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text35
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("6")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey36
+                x: 0
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text36
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("7")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey37
+                x: 119
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text37
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("8")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey38
+                x: 237
+                y: 171
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text38
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("9")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            Rectangle {
+                id: rectKey39
+                x: 119
+                y: 249
+                width: 97
+                height: 67
+                color: "#433d3d"
+                radius: 15
+                border.width: 0
+                Text {
+                    id: text39
+                    x: 14
+                    y: 14
+                    width: 69
+                    height: 40
+                    color: "#f5f4f4"
+                    text: qsTr("0")
+                    font.pixelSize: 35
+                    horizontalAlignment: Text.AlignHCenter
+                    font.bold: true
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit31
+                x: 119
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "2"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit32
+                x: 237
+                y: 7
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "3"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit33
+                x: 0
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "4"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit34
+                x: 119
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                                    textFieldOTP.text = textFieldOTP.text + "5"
+
+                                }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit35
+                x: 237
+                y: 86
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "6"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit36
+                x: 0
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "7"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit37
+                x: 119
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "8"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit38
+                x: 237
+                y: 171
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "9"
+
+                        }
+            }
+
+            MouseArea {
+                id: mouseAreaDigit39
+                x: 119
+                y: 249
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = textFieldOTP.text + "0"
+
+                        }
+            }
+
+            Rectangle {
+                id: rectangleCancelOTP
+                x: 0
+                y: 249
+                width: 97
+                height: 67
+                color: "#fd3a3a"
+                radius: 15
+                Image {
+                    id: imageCancelOTP
+                    x: 0
+                    y: 0
+                    width: 97
+                    height: 67
+                    source: "Images/Cancel.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            Rectangle {
+                id: rectangleConfirmOTP
+                x: 237
+                y: 249
+                width: 97
+                height: 67
+                color: "#63f517"
+                radius: 15
+                Image {
+                    id: image2
+                    x: 0
+                    y: 8
+                    width: 97
+                    height: 51
+                    source: "Images/Confirm.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaConfirmOTP
+                x: 238
+                y: 249
+                width: 96
+                height: 67
+                onClicked: {
+                    backend.otpChecker(textFieldOTP.text)
+                }
+            }
+
+            MouseArea {
+                id: mouseAreaCancelOTP
+                x: 0
+                y: 249
+                width: 97
+                height: 67
+                onClicked: {
+                            textFieldOTP.text = ""
+                        }
             }
         }
         GroupBox {
@@ -1819,11 +2358,7 @@ Window {
                 width: 146
                 height: 49
                 onClicked: {
-                    groupBoxSRL.visible = false
-                    groupBoxSRLKeypad.visible = false
-                    textFieldSRL.text = ""
                     backend.srlLockOpen(textFieldSRL.text)
-
                 }
             }
 
@@ -1831,6 +2366,43 @@ Window {
     }
     Connections{
         target: backend
+        function onOtpResult(result){
+            if(result === "True"){
+                groupBoxOTP.visible = false
+                groupBoxOTPKeypad.visible = false
+                labelErrorMessage.text = "Correct OTP"
+                labelErrorMessage.visible = true
+        }
+            else if(result == "False"){
+                labelErrorMessage.text = "Wrong OTP. Please try again"
+                labelErrorMessage.visible = true
+            }
+     }
+
+        function onSoidResult(result){
+            if(result === "True"){
+                groupBoxOTP.visible = true
+                groupBoxSOID.visible = false
+                groupBoxSOIDKeypad.visible = false
+            }
+        }
+        function onDcNumberResult(result){
+            if(result === "True"){
+                labelErrorMessage.text = ""
+                groupBoxDCNumber.visible = false
+                groupBoxDCNumberKeypad.visible = false
+                groupBoxSRL.visible = true
+                
+                //labelErrorMessage.visible = false
+            }
+        }
+        function onSrlResult(result){
+            if(result === "True"){
+                groupBoxSRL.visible = false
+                groupBoxSRLKeypad.visible = false
+                textFieldSRL.text = ""
+            }
+        }
 
     }
 
@@ -1842,6 +2414,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:97}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

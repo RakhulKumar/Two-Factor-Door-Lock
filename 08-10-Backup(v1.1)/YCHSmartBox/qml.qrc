@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Images/YCHLogo.png</file>
+        <file>Images/Pickup.png</file>
+        <file>Images/Cancel.png</file>
+        <file>Images/Confirm.png</file>
+    </qresource>
+</RCC>
