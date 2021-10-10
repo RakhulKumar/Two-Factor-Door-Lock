@@ -8,6 +8,7 @@ void setup() {
    pinMode(33, OUTPUT); // Door6
    pinMode(35, OUTPUT); // Door7
    pinMode(37, OUTPUT); // Door8
+   pinMode(53, OUTPUT);
    
 }
 void loop() {
@@ -46,9 +47,12 @@ void loop() {
          digitalWrite(37, HIGH);
          delay(3000);
          digitalWrite(37, LOW);
-      }else{
-         digitalWrite(LED_BUILTIN, HIGH);
+      }else if (command == "barcode"){
+         digitalWrite(53,HIGH);
+         delay(7000);
+         digitalWrite(53,LOW);
       }
+      
        
    }
 }

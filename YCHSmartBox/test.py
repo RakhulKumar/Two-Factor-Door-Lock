@@ -1,5 +1,4 @@
 '''
-
 OTP = "-1"
 
 class Exampleclass:
@@ -19,7 +18,7 @@ for i in dicti:
     if(i=="101"):
         print(dicti[i])
 
-'''
+
 
 import datetime
 
@@ -27,3 +26,15 @@ current_time = datetime.datetime.now()
 dat = str(current_time)
 print(type(dat))
 print(dat)
+
+'''
+import serial
+
+USB_PORT = "/dev/tty.usbmodem14101"
+usb = serial.Serial(USB_PORT, 9600, timeout=2)
+
+def barcode():
+        usb.write(b'barcode')
+
+barcode()
+

@@ -31,6 +31,11 @@ class MainWindow(QObject):
     def __init__(self):
         QObject.__init__(self)
 
+    @Slot(str)
+    def barcode(self,dummy):
+        usb.write(b'barcode')
+
+
     DCNumber = ""
     SRL = ""
 

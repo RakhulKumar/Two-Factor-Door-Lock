@@ -71,8 +71,8 @@ Window {
                     groupBoxDCNumberKeypad.visible = false
                     groupBoxSRL.visible = false
                     groupBoxSRLKeypad.visible = false
-                    labelErrorMessage.text = ""
-                    labelErrorMessage.visible = false
+                    backend.barcode("Dummy")
+
                 }
             }
 
