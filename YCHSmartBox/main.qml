@@ -58,7 +58,7 @@ Window {
             RadioButton {
                 id: radioButtonPickMaterial
                 x: 8
-                y: 51
+                y: 129
                 width: 278
                 height: 44
                 text: qsTr("Pick Material")
@@ -79,7 +79,7 @@ Window {
             RadioButton {
                 id: radioButtonRefillMaterial
                 x: 8
-                y: 135
+                y: 45
                 width: 286
                 height: 44
                 text: qsTr("Refill Material")
@@ -1841,6 +1841,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}D{i:97}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/
