@@ -37,8 +37,8 @@ Window {
         }
         Text {
             id: textSelectActivity
-            x: 41
-            y: 32
+            x: 100
+            y: 26
             width: 291
             height: 50
             text: qsTr("Select Activity")
@@ -47,7 +47,7 @@ Window {
         }
         Rectangle {
             id: rectangleOptions
-            x: 36
+            x: 94
             y: 88
             width: 302
             height: 230
@@ -66,12 +66,14 @@ Window {
                 font.bold: true
                 onToggled: {
                     groupBoxSOID.visible = true
+                    rectangleIndicator.color = "blue"
                     groupBoxSOIDKeypad.visible = false
                     groupBoxDCNumber.visible = false
                     groupBoxDCNumberKeypad.visible = false
                     groupBoxSRL.visible = false
                     groupBoxSRLKeypad.visible = false
                     backend.barcode("Dummy")
+
 
                 }
             }
@@ -94,6 +96,7 @@ Window {
                     textFieldDCNumber.text = ""
                     textFieldSRL.text =""
                     textFieldSOID.text = ""
+                    rectangleIndicator.color = "red"
                     backend.barcode("Dummy")
                 }
             }
@@ -244,19 +247,6 @@ Window {
 
         }
 
-
-        Label {
-            id: labelErrorMessage
-            x: 82
-            y: 333
-            width: 211
-            height: 111
-            visible: true
-            font.bold: true
-            font.pixelSize: 22
-
-
-        }
 
         GroupBox {
             id: groupBoxSRLKeypad
@@ -1826,6 +1816,21 @@ Window {
                 }
             }
 
+        }
+
+        Rectangle {
+            id: rectangleIndicator
+            x: 0
+            y: 0
+            width: 70
+            height: 800
+            color: "yellow"
+            //gradient: Gradient{
+              //  GradientStop{ position: 1.0; color: "#F1bc09"}
+                //GradientStop{ position: 0.5; color: "#F1d109"}
+                //GradientStop{ position: 0.0; color: "#eaf109"}
+
+           // }
         }
     }
     Connections{
