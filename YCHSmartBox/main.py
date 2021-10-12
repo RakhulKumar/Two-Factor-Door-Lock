@@ -27,13 +27,14 @@ usb = serial.Serial(USB_PORT, 9600, timeout=2)
 
 
 class MainWindow(QObject):
-    
+
     def __init__(self):
         QObject.__init__(self)
 
     @Slot(str)
     def barcode(self,dummy):
-        usb.write(b'barcode')
+        if(dummy == "Dummy"):
+            usb.write(b'barcode')
 
 
     DCNumber = ""
@@ -46,23 +47,23 @@ class MainWindow(QObject):
         for i in local_data:
             if(i == self.DCNumber):
                 self.SRL = local_data[i]
-               
+
 
 
     @Slot(str)
     def srlLockOpen(self, user_SRL):
         if(self.SRL == user_SRL):
-            if(user_SRL == "101"):   
+            if(user_SRL == "101"):
                 usb.write(b'door1')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door1 " + curr_date + ".jpg"
                 security_camera(filename)
-            elif(user_SRL == "102"):     
+            elif(user_SRL == "102"):
                 usb.write(b'door2')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door2 " + curr_date + ".jpg"
                 security_camera(filename)
-            elif(user_SRL == "103"):  
+            elif(user_SRL == "103"):
                 usb.write(b'door3')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door3 " + curr_date + ".jpg"
@@ -91,12 +92,12 @@ class MainWindow(QObject):
                 usb.write(b'door8')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door8 " + curr_date + ".jpg"
-                security_camera(filename)  
+                security_camera(filename)
 
-    
-    
+
+
     SOID = ""
-    
+
 
     @Slot(str)
     def soidChecker(self,SOID):
@@ -108,48 +109,48 @@ class MainWindow(QObject):
                 curr_date = str(datetime.datetime.now())
                 filename = "Door1 " + curr_date + ".jpg"
                 security_camera(filename)
-            
+
             elif (SOID =="01 253843002"):
                 usb.write(b'door2')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door2 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
             elif (SOID =="01 253843003"):
                 usb.write(b'door3')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door3 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
             elif (SOID =="01 253843004"):
                 usb.write(b'door4')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door4 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
             elif (SOID =="01 253843005"):
                 usb.write(b'door5')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door5 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
             elif (SOID =="01 253843006"):
                 usb.write(b'door6')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door6 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
             elif (SOID =="01 253843007"):
                 usb.write(b'door7')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door7 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
             elif (SOID =="01 253843008"):
                 usb.write(b'door8')
                 curr_date = str(datetime.datetime.now())
                 filename = "Door8 " + curr_date + ".jpg"
-                security_camera(filename) 
+                security_camera(filename)
 
 
 

@@ -12,7 +12,7 @@ def security_camera(filename):
     camera.set(4, y)
 
     #Target folder for storing images
-    path = '/home/ubuntu/Downloads/Two-Factor-Security-Door/YCHSmartBox/SecurityCam'
+    path = '/home/pi/Downloads/Two-Factor-Door-Lock-master/YCHSmartBox/CamShots'
 
     # Adjust camera lighting
     for i in range(ramp_frames):

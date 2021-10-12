@@ -94,8 +94,7 @@ Window {
                     textFieldDCNumber.text = ""
                     textFieldSRL.text =""
                     textFieldSOID.text = ""
-                    labelErrorMessage.text = ""
-                    labelErrorMessage.visible = false
+                    backend.barcode("Dummy")
                 }
             }
         }
