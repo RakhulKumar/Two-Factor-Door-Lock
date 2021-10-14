@@ -72,7 +72,6 @@ Window {
                     groupBoxDCNumberKeypad.visible = false
                     groupBoxSRL.visible = false
                     groupBoxSRLKeypad.visible = false
-                    backend.barcode("Dummy")
 
 
                 }
@@ -97,19 +96,18 @@ Window {
                     textFieldSRL.text =""
                     textFieldSOID.text = ""
                     rectangleIndicator.color = "red"
-                    backend.barcode("Dummy")
+
                 }
             }
         }
 
         GroupBox {
             id: groupBoxSOID
-            x: 422
-            y: 81
+            x: 435
+            y: 88
             width: 484
             height: 170
             visible: false
-
             Text {
                 id: textEnterSOID
                 x: 0
@@ -230,18 +228,52 @@ Window {
                 }
 
                 MouseArea {
-                    id: mouseAreaConfirmSOID1
+                    id: mouseAreaConfirmSOID
                     x: 0
-                    y: 2
+                    y: 0
                     width: 138
                     height: 46
                     onClicked: {
-                            groupBoxSOID.visible = false
-                            groupBoxSOIDKeypad.visible = false
-                            backend.soidChecker(textFieldSOID.text)
+                        groupBoxSOID.visible = false
+                        groupBoxSOIDKeypad.visible = false
+                        backend.soidChecker(textFieldSOID.text)
 
 
                     }
+                }
+            }
+
+            Rectangle {
+                id: rectScanSOID
+                x: 306
+                y: 101
+                width: 141
+                height: 49
+                color: "#433d3d"
+                radius: 15
+
+
+                Text {
+                    id: textDCNumberConfirm2
+                    x: 42
+                    y: 8
+                    width: 91
+                    height: 33
+                    color: "#f1efef"
+                    text: qsTr("Scan")
+                    font.pixelSize: 25
+                    font.bold: true
+                }
+
+                MouseArea {
+                    id: mouseAreaScanSOID
+                    x: 0
+                    y: 1
+                    width: 141
+                    height: 49
+                    onClicked: {
+                                   backend.scanner()
+                                            }
                 }
             }
 
@@ -1524,8 +1556,8 @@ Window {
 
         GroupBox {
             id: groupBoxDCNumber
-            x: 424
-            y: 81
+            x: 435
+            y: 88
             width: 484
             height: 170
             visible: false
@@ -1551,8 +1583,8 @@ Window {
 
             Rectangle {
                 id: rectImageDCNumber
-                x: 307
-                y: 25
+                x: 306
+                y: 7
                 width: 147
                 height: 69
                 color: "#eaeae6"
@@ -1567,9 +1599,9 @@ Window {
                     fillMode: Image.PreserveAspectFit
                     MouseArea {
                         id: mouseAreaForceQuitDCNumber
-                        x: -27
-                        y: 10
-                        width: 161
+                        x: -28
+                        y: 12
+                        width: 149
                         height: 64
                         onClicked: {
                             //Qt.quit()
@@ -1593,90 +1625,55 @@ Window {
                 }
             }
 
-            Rectangle {
-                id: rectDCNumberKeypad
-                x: 2
-                y: 97
-                width: 141
-                height: 49
-                color: "#433d3d"
-                radius: 15
-                Text {
-                    id: textDCNumberKeypad
-                    x: 24
-                    y: 8
-                    width: 91
-                    height: 33
-                    color: "#f1efef"
-                    text: qsTr("Keypad")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
+            Button {
+                id: buttonDCNumberKeypad
+                x: 6
+                y: 98
+                width: 115
+                height: 48
+                text: qsTr("Keypad")
+                font.bold: true
+                font.pointSize: 15
+                onClicked: groupBoxDCNumberKeypad.visible = !groupBoxDCNumberKeypad.visible
+            }
 
-                MouseArea {
-                    id: mouseAreaDCNumberKeypad
-                    x: 0
-                    y: 0
-                    width: 129
-                    height: 49
-                    onClicked: {
-                        groupBoxDCNumberKeypad.visible = true
-                    }
+            Button {
+                id: buttonDCNumberConfirm
+                x: 163
+                y: 98
+                width: 115
+                height: 48
+                text: qsTr("Confirm")
+                font.pointSize: 15
+                font.bold: true
+                onClicked: {
+                    backend.dcNumberChecker(textFieldDCNumber.text)
+                    groupBoxDCNumberKeypad.visible = false
+                    groupBoxDCNumber.visible = false
+                    groupBoxSRL.visible = true
+
                 }
             }
 
-            Rectangle {
-                id: rectDCNumberConfirm1
-                x: 154
-                y: 97
-                width: 141
-                height: 49
-                color: "#433d3d"
-                radius: 15
-                MouseArea {
-                    id: mouseAreaDCNumberKeypad1
-                    x: -152
-                    y: 0
-                    width: 137
-                    height: 49
-                    onClicked: {
-                        groupBoxDCNumberKeypad.visible = !groupBoxDCNumberKeypad.visible
-                    }
-                }
-
-                Text {
-                    id: textDCNumberConfirm
-                    x: 24
-                    y: 8
-                    width: 91
-                    height: 33
-                    color: "#f1efef"
-                    text: qsTr("Confirm")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
-
-
-                MouseArea {
-                    id: mouseAreaConfirmDCNumber1
-                    x: 0
-                    y: 0
-                    width: 141
-                    height: 49
-                    onClicked: {
-                        groupBoxDCNumber.visible = false
-                        groupBoxDCNumberKeypad.visible = false
-                        groupBoxSRL.visible = true
-                        backend.dcNumberChecker(textFieldDCNumber.text)
-
-                    }
-                }
+            Button {
+                id: buttonDCNumberScan
+                x: 314
+                y: 98
+                width: 115
+                height: 48
+                text: qsTr("Scan")
+                font.pointSize: 15
+                font.bold: true
+                onClicked: backend.scanner()
             }
+
+
+
         }
         GroupBox {
             id: groupBoxSRL
-            x: 427
-            y: 82
+            x: 435
+            y: 88
             width: 484
             height: 170
             visible: false
@@ -1827,11 +1824,13 @@ Window {
             color: "yellow"
             //gradient: Gradient{
               //  GradientStop{ position: 1.0; color: "#F1bc09"}
-                //GradientStop{ position: 0.5; color: "#F1d109"}
-                //GradientStop{ position: 0.0; color: "#eaf109"}
+            //GradientStop{ position: 0.5; color: "#F1d109"}
+            //GradientStop{ position: 0.0; color: "#eaf109"}
 
-           // }
+            // }
         }
+
+
     }
     Connections{
         target: backend
@@ -1846,6 +1845,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;formeditorZoom:0.66}D{i:24}D{i:146}D{i:147}
 }
 ##^##*/

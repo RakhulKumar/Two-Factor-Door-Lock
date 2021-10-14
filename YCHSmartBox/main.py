@@ -31,10 +31,6 @@ class MainWindow(QObject):
     def __init__(self):
         QObject.__init__(self)
 
-    @Slot(str)
-    def barcode(self,dummy):
-        usb.write(b'barcode')
-
 
     DCNumber = ""
     SRL = ""
@@ -152,6 +148,10 @@ class MainWindow(QObject):
                 curr_date = str(datetime.datetime.now())
                 filename = "Door8 " + curr_date + ".jpg"
                 security_camera(filename)
+            
+    @Slot()
+    def scanner(self):
+        usb.write(b'barcode')
 
 
 
