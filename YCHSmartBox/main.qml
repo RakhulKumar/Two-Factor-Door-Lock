@@ -26,6 +26,114 @@ Window {
 
         }
 
+        GroupBox {
+            id: groupBoxSRL
+            x: 434
+            y: 89
+            width: 484
+            height: 170
+            visible: false
+
+            Text {
+                id: textEnterSRL
+                x: 0
+                y: -6
+                text: qsTr("Enter/Scan SRL Number")
+                font.pixelSize: 25
+                font.bold: true
+            }
+
+            TextField {
+                id: textFieldSRL
+                x: 0
+                y: 37
+                width: 293
+                height: 46
+                font.pointSize: 18
+                placeholderText: "Enter SRL"
+                font.bold: true
+
+            }
+
+            Rectangle {
+                id: rectImageRefMat
+                x: 301
+                y: 17
+                width: 166
+                height: 69
+                color: "#eaeae6"
+                radius: 15
+
+                Text {
+                    id: textForceQuitSRL
+                    x: 35
+                    y: 41
+                    text: qsTr("Force Quit")
+                    font.pixelSize: 21
+                    font.bold: true
+                }
+                Image {
+                    id: imageSRLForceQuit
+                    x: 22
+                    y: -6
+                    width: 126
+                    height: 61
+                    source: "Images/Cancel.png"
+                    fillMode: Image.PreserveAspectFit
+
+                    MouseArea {
+                        id: mouseAreaForceQuitSRL
+                        x: -23
+                        y: 0
+                        width: 158
+                        height: 68
+                        onClicked: {
+                            //Qt.quit()
+                            textFieldDCNumber.text = ""
+                            textFieldSRL.text = ""
+                            groupBoxDCNumberKeypad.visible = false
+                            groupBoxSRLKeypad.visible = false
+                            groupBoxSRL.visible = false
+                            groupBoxDCNumber.visible = true
+                        }
+                    }
+                }
+            }
+
+            Button {
+                id: buttonSRLKeypadOpen
+                x: 0
+                y: 89
+                width: 148
+                height: 57
+                text: qsTr("Keypad")
+                font.pointSize: 19
+                font.bold: true
+                onClicked: groupBoxSRLKeypad.visible = !groupBoxSRLKeypad.visible
+
+            }
+
+            Button {
+                id: buttonSRLConfirm
+                x: 169
+                y: 89
+                width: 148
+                height: 57
+                text: qsTr("Confirm")
+                font.bold: true
+                font.pointSize: 19
+                onClicked: {
+                    backend.srlLockOpen(textFieldSRL.text)
+                    groupBoxSRL.visible = false
+                    groupBoxSRLKeypad.visible = false
+                    textFieldSRL.text = ""
+                    groupBoxDCNumber.visible = true
+                    textFieldDCNumber.text = ""
+                }
+            }
+
+        }
+
         Image {
             id: ychLogo
             x: 560
@@ -104,7 +212,7 @@ Window {
         GroupBox {
             id: groupBoxSOID
             x: 435
-            y: 88
+            y: 89
             width: 484
             height: 170
             visible: false
@@ -174,107 +282,44 @@ Window {
                 }
             }
 
-            Rectangle {
-                id: rectSOIDKeypad
-                x: 0
-                y: 100
-                width: 138
-                height: 46
-                color: "#433d3d"
-                radius: 15
+            Button {
+                id: buttonSOIDKeypadOpen
+                x: 2
+                y: 99
+                width: 140
+                height: 47
+                text: qsTr("Keypad")
+                font.pointSize: 19
+                font.bold: true
+                onClicked: groupBoxSOIDKeypad.visible = !groupBoxSOIDKeypad.visible
+            }
 
-                Text {
-                    id: textSOIDKeypad
-                    x: 23
-                    y: 6
-                    width: 90
-                    height: 30
-                    color: "#f7f6f6"
-                    text: qsTr("Keypad")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
-
-                MouseArea {
-                    id: mouseAreaSOIDKeypad
-                    x: 0
-                    y: 0
-                    width: 138
-                    height: 46
-                    onClicked: {
-                        groupBoxSOIDKeypad.visible = !groupBoxSOIDKeypad.visible
-                    }
+            Button {
+                id: buttonSOIDConfirm
+                x: 153
+                y: 99
+                width: 140
+                height: 47
+                text: qsTr("Confirm")
+                font.bold: true
+                font.pointSize: 19
+                onClicked: {
+                    backend.soidChecker(textFieldSOID.text)
+                    groupBoxSOIDKeypad.visible = false
+                    textFieldSOID.text = ""
                 }
             }
 
-            Rectangle {
-                id: rectSOIDConfirm
-                x: 155
-                y: 102
-                width: 138
-                height: 46
-                color: "#40433d"
-                radius: 15
-                Text {
-                    id: textSOIDConfirm
-                    x: 23
-                    y: 6
-                    width: 90
-                    height: 30
-                    color: "#f7f6f6"
-                    text: qsTr("Confirm")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
-
-                MouseArea {
-                    id: mouseAreaConfirmSOID
-                    x: 0
-                    y: 0
-                    width: 138
-                    height: 46
-                    onClicked: {
-                        groupBoxSOID.visible = false
-                        groupBoxSOIDKeypad.visible = false
-                        backend.soidChecker(textFieldSOID.text)
-
-
-                    }
-                }
-            }
-
-            Rectangle {
-                id: rectScanSOID
-                x: 306
-                y: 101
-                width: 141
-                height: 49
-                color: "#433d3d"
-                radius: 15
-
-
-                Text {
-                    id: textDCNumberConfirm2
-                    x: 42
-                    y: 8
-                    width: 91
-                    height: 33
-                    color: "#f1efef"
-                    text: qsTr("Scan")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
-
-                MouseArea {
-                    id: mouseAreaScanSOID
-                    x: 0
-                    y: 1
-                    width: 141
-                    height: 49
-                    onClicked: {
-                                   backend.scanner()
-                                            }
-                }
+            Button {
+                id: buttonSOIDScan
+                x: 308
+                y: 99
+                width: 140
+                height: 47
+                text: qsTr("Scan")
+                font.bold: true
+                font.pointSize: 19
+                onClicked: backend.scanner()
             }
 
         }
@@ -1670,113 +1715,6 @@ Window {
 
 
         }
-        GroupBox {
-            id: groupBoxSRL
-            x: 434
-            y: 89
-            width: 484
-            height: 170
-            visible: false
-
-            Text {
-                id: textEnterSRL
-                x: 0
-                y: -6
-                text: qsTr("Enter/Scan SRL Number")
-                font.pixelSize: 25
-                font.bold: true
-            }
-
-            TextField {
-                id: textFieldSRL
-                x: 0
-                y: 37
-                width: 293
-                height: 46
-                font.pointSize: 18
-                placeholderText: "Enter SRL"
-                font.bold: true
-
-            }
-
-            Rectangle {
-                id: rectImageRefMat
-                x: 301
-                y: 17
-                width: 166
-                height: 69
-                color: "#eaeae6"
-                radius: 15
-
-                Text {
-                    id: textForceQuitSRL
-                    x: 35
-                    y: 41
-                    text: qsTr("Force Quit")
-                    font.pixelSize: 21
-                    font.bold: true
-                }
-                Image {
-                    id: imageSRLForceQuit
-                    x: 22
-                    y: -6
-                    width: 126
-                    height: 61
-                    source: "Images/Cancel.png"
-                    fillMode: Image.PreserveAspectFit
-
-                    MouseArea {
-                        id: mouseAreaForceQuitSRL
-                        x: -23
-                        y: 0
-                        width: 158
-                        height: 68
-                        onClicked: {
-                            //Qt.quit()
-                            textFieldDCNumber.text = ""
-                            textFieldSRL.text = ""
-                            groupBoxDCNumberKeypad.visible = false
-                            groupBoxSRLKeypad.visible = false
-                            groupBoxSRL.visible = false
-                            groupBoxDCNumber.visible = true
-                        }
-                    }
-                }
-            }
-
-            Button {
-                id: buttonSRLKeypadOpen
-                x: 0
-                y: 89
-                width: 148
-                height: 57
-                text: qsTr("Keypad")
-                font.pointSize: 19
-                font.bold: true
-                onClicked: groupBoxSRLKeypad.visible = !groupBoxSRLKeypad.visible
-
-            }
-
-            Button {
-                id: buttonSRLConfirm
-                x: 169
-                y: 89
-                width: 148
-                height: 57
-                text: qsTr("Confirm")
-                font.bold: true
-                font.pointSize: 19
-                onClicked: {
-                    backend.srlLockOpen(textFieldSRL.text)
-                    groupBoxSRL.visible = false
-                    groupBoxSRLKeypad.visible = false
-                    textFieldSRL.text = ""
-                    groupBoxDCNumber.visible = true
-                    textFieldDCNumber.text = ""
-                }
-            }
-
-        }
 
         Rectangle {
             id: rectangleIndicator
@@ -1808,6 +1746,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.9}D{i:156}
+    D{i:0;formeditorZoom:0.66}D{i:28}D{i:29}
 }
 ##^##*/
