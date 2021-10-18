@@ -32,15 +32,13 @@ class MainWindow(QObject):
         QObject.__init__(self)
 
 
-    DCNumber = ""
     SRL = ""
 
     @Slot(str)
     def dcNumberChecker(self,dcNumber):
-        self.DCNumber = dcNumber
         local_data = DCNumber_Data()
         for i in local_data:
-            if(i == self.DCNumber):
+            if(i == dcNumber):
                 self.SRL = local_data[i]
 
 

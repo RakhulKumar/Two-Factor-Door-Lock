@@ -1672,8 +1672,8 @@ Window {
         }
         GroupBox {
             id: groupBoxSRL
-            x: 435
-            y: 88
+            x: 434
+            y: 89
             width: 484
             height: 170
             visible: false
@@ -1701,8 +1701,8 @@ Window {
 
             Rectangle {
                 id: rectImageRefMat
-                x: 306
-                y: 25
+                x: 301
+                y: 17
                 width: 166
                 height: 69
                 color: "#eaeae6"
@@ -1728,7 +1728,7 @@ Window {
                     MouseArea {
                         id: mouseAreaForceQuitSRL
                         x: -23
-                        y: 7
+                        y: 0
                         width: 158
                         height: 68
                         onClicked: {
@@ -1744,72 +1744,35 @@ Window {
                 }
             }
 
-            Rectangle {
-                id: rectSRLKeypad
+            Button {
+                id: buttonSRLKeypadOpen
                 x: 0
-                y: 97
-                width: 139
-                height: 49
-                color: "#433d3d"
-                radius: 15
+                y: 89
+                width: 148
+                height: 57
+                text: qsTr("Keypad")
+                font.pointSize: 19
+                font.bold: true
+                onClicked: groupBoxSRLKeypad.visible = !groupBoxSRLKeypad.visible
 
-                Text {
-                    id: textSRLKeypad
-                    x: 26
-                    y: 7
-                    width: 91
-                    height: 33
-                    color: "#f1efef"
-                    text: qsTr("Keypad")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
-
-                MouseArea {
-                    id: mouseAreaSRLKeypad
-                    x: 2
-                    y: 0
-                    width: 137
-                    height: 49
-                    onClicked: {
-                        groupBoxSRLKeypad.visible = !groupBoxSRLKeypad.visible
-                    }
-                }
             }
 
-            Rectangle {
-                id: rectSRLConfirm1
-                x: 154
-                y: 97
-                width: 145
-                height: 49
-                color: "#433d3d"
-                radius: 15
-                Text {
-                    id: textSRLConfirm1
-                    x: 23
-                    y: 8
-                    width: 91
-                    height: 33
-                    color: "#f1efef"
-                    text: qsTr("Confirm")
-                    font.pixelSize: 25
-                    font.bold: true
-                }
-            }
-
-            MouseArea {
-                id: mouseAreaSRLConfirm1
-                x: 154
-                y: 97
-                width: 146
-                height: 49
+            Button {
+                id: buttonSRLConfirm
+                x: 169
+                y: 89
+                width: 148
+                height: 57
+                text: qsTr("Confirm")
+                font.bold: true
+                font.pointSize: 19
                 onClicked: {
+                    backend.srlLockOpen(textFieldSRL.text)
                     groupBoxSRL.visible = false
                     groupBoxSRLKeypad.visible = false
                     textFieldSRL.text = ""
-                    backend.srlLockOpen(textFieldSRL.text)
-
+                    groupBoxDCNumber.visible = true
+                    textFieldDCNumber.text = ""
                 }
             }
 
@@ -1845,6 +1808,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.66}D{i:24}D{i:146}D{i:147}
+    D{i:0;formeditorZoom:0.9}D{i:156}
 }
 ##^##*/
