@@ -1609,13 +1609,13 @@ Window {
             y: 88
             width: 484
             height: 170
-            visible: false
+            visible: true
             Text {
                 id: textEnterDCNumber
                 x: 0
                 y: -6
                 text: qsTr("Enter/Scan DC Number")
-                font.pixelSize: 25
+                font.pixelSize: 23
                 font.bold: true
             }
 
@@ -1632,7 +1632,7 @@ Window {
 
             Rectangle {
                 id: rectImageDCNumber
-                x: 306
+                x: 318
                 y: 7
                 width: 147
                 height: 69
@@ -1640,16 +1640,16 @@ Window {
                 radius: 15
                 Image {
                     id: imageDCNumber
-                    x: 24
-                    y: -7
-                    width: 102
-                    height: 60
+                    x: 29
+                    y: 0
+                    width: 89
+                    height: 47
                     source: "Images/Cancel.png"
                     fillMode: Image.PreserveAspectFit
                     MouseArea {
                         id: mouseAreaForceQuitDCNumber
-                        x: -28
-                        y: 12
+                        x: -20
+                        y: 8
                         width: 149
                         height: 64
                         onClicked: {
@@ -1665,8 +1665,8 @@ Window {
 
                     Text {
                         id: textForceQuitDCNumber
-                        x: -3
-                        y: 46
+                        x: -7
+                        y: 40
                         text: qsTr("Force Quit")
                         font.pixelSize: 21
                         font.bold: true
@@ -1738,7 +1738,7 @@ Window {
         Rectangle {
             id: rectangleExitApplication
             x: 1068
-            y: 624
+            y: 516
             width: 204
             height: 124
             color: "#d33030"
@@ -1760,8 +1760,8 @@ Window {
 
         Image {
             id: imageExitIcon
-            x: 1132
-            y: 632
+            x: 1138
+            y: 516
             width: 64
             height: 72
             source: "Images/ExitIcon.png"
@@ -1770,8 +1770,8 @@ Window {
 
         MouseArea {
             id: mouseAreaExitApp
-            x: 1066
-            y: 624
+            x: 1068
+            y: 512
             width: 204
             height: 124
             onClicked: {
