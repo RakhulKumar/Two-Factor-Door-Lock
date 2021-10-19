@@ -27,6 +27,7 @@ dat = str(current_time)
 print(type(dat))
 print(dat)
 
+'''
 import serial
 
 USB_PORT = "/dev/tty.usbmodem14101"
@@ -36,8 +37,4 @@ def barcode():
         usb.write(b'barcode')
 
 barcode()
-'''
 
-import os
-
-os.system('nautilus /home/ubuntu/Downloads/Two-Factor-Security-Door/YCHSmartBox/SecurityCam')

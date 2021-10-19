@@ -149,12 +149,6 @@ class MainWindow(QObject):
     def scanner(self):
         usb.write(b'barcode')
 
-    @Slot(str)
-    def shellRunner(self,masterPIN):
-        if(masterPIN == "1470"):
-            os.system('nautilus /home/ubuntu/Downloads/Two-Factor-Security-Door/YCHSmartBox/SecurityCam')
-            #os.system('pcmanfm /home/ubuntu/Downloads/Two-Factor-Security-Door/YCHSmartBox/SecurityCam')
-
 
 
 if __name__ == "__main__":

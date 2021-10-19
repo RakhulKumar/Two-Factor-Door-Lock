@@ -5,6 +5,5 @@
         <file>Images/Pickup.png</file>
         <file>Images/Cancel.png</file>
         <file>Images/Confirm.png</file>
-        <file>Images/ExitIcon.png</file>
     </qresource>
 </RCC>
