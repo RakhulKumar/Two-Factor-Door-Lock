@@ -8,8 +8,7 @@ void setup() {
    pinMode(33, OUTPUT); // Door6
    pinMode(35, OUTPUT); // Door7
    pinMode(37, OUTPUT); // Door8
-   pinMode(22, OUTPUT);
-   pinMode(24, OUTPUT);
+   pinMode(24, OUTPUT); // Barcode Reader
    
 }
 void loop() {
@@ -45,9 +44,8 @@ void loop() {
          delay(3000);
          digitalWrite(35, LOW);
       } else if (command == "barcode") {  // turn on Door7
-         digitalWrite(22, HIGH);
          digitalWrite(24, HIGH);
-         digitalWrite(22, LOW);
+         delay(3000);
          digitalWrite(24, LOW);
       }else if (command == "door8") {  // turn on Door8
          digitalWrite(37, HIGH);
